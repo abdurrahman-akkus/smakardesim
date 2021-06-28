@@ -1,3 +1,28 @@
+<?php include 'util/connect.php'; ?>
+<?php 
+$id = isset($_GET['id'])?$_GET['id']:1; 
+$cocuk = $db->query("SELECT * FROM cocuk WHERE id = '{$id}'")->fetch(PDO::FETCH_ASSOC);
+$bankalar = $db->query("SELECT * FROM bankaBilgileri WHERE cocuk_id = '{$id}'");
+?>
+
+<?php 
+$orijinalFormat = 'Y-m-d';
+$orijinalZamanDamgasiFormat = 'Y-m-d H:i:s'
+?>
+
+<?php 
+function yuzdeRozeti($value)
+{
+    if((int) $value<=30){
+        return "bg-danger";
+    } elseif ((int) $value<=60) {
+        return "bg-warning";
+    } else {
+        return "bg-success";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html style="font-size: 16px;">
 
@@ -92,7 +117,7 @@
             </div>
         </header>
         <section class="u-clearfix u-section-3" id="sec-468f">
-            <h1 class="u-text u-title">İsim Soyisim</h1>
+            <h1 class="u-text u-title"><?=$cocuk[ad]?></h1>
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <div class="row">
                     <div class="col-md-6">
@@ -111,56 +136,100 @@
                         <table class="table table-striped text-light">
                             <tr>
                                 <td>Yetkili Adı</td>
-                                <td>İsim Soyisim</td>
+                                <td><?=$cocuk[yetkili_adi]?></td>
                             </tr>
                             <tr>
                                 <td>İletişim</td>
-                                <td>+9012345678910</td>
+                                <td><?=$cocuk[iletisim]?></td>
                             </tr>
                             <tr>
                                 <td>SMA Tipi</td>
-                                <td>SMA 1</td>
+                                <td><?=$cocuk[sma_tip]?></td>
                             </tr>
                             <tr>
                                 <td>Valilik İzni Başlangıç-Bitiş Tarihi</td>
-                                <td>01.01.2020-01.01.2021</td>
+                                <td><?=DateTime::createFromFormat($orijinalFormat, $cocuk[valilik_izin_baslangic])->format("d.m.Y")
+                                ."-".DateTime::createFromFormat($orijinalFormat,$cocuk[valilik_izin_bitis])->format("d.m.Y")?></td>
                             </tr>
                             <tr>
                                 <td>Toplanacak Miktar</td>
-                                <td>2500000$</td>
+                                <td><?=$cocuk[toplanacak].$cocuk[birim]?></td>
                             </tr>
                             <tr>
                                 <td>Toplanan Miktar</td>
-                                <td>1000000$</td>
+                                <td><?=$cocuk[toplanan].$cocuk[birim]?>
+                                    <span class="badge <?php echo yuzdeRozeti($cocuk[yuzde])?>"><?="%".$cocuk[yuzde]?></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Son Güncelleme Tarihi</td>
-                                <td>13.06.2021</td>
+                                <td><?=DateTime::createFromFormat($orijinalZamanDamgasiFormat,$cocuk[guncelleme_ani])->format("d.m.Y H:i:s")?></td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <table class="table table-striped">
+                                    <table class="table table-striped table-info">
                                         <thead>
                                             <tr>
                                                 <th>Banka Adı</th>
                                                 <th>Para Birimi</th>
                                                 <th>IBAN No</th>
-                                                <th>Swift Kodu</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php  
+                                                while ($banka = $bankalar->fetch(PDO::FETCH_ASSOC)) {
+                                            ?>
                                             <tr>
-                                                <td>Banka 1</td>
-                                                <td>EUR</td>
-                                                <td>TR123456789012345678901234</td>
-                                                <td>SDA8485</td>
+                                                <td><?=$banka[banka]?></td>
+                                                <td><?=$banka[birim]?></td>
+                                                <td class="kopyalanabilir" data-bs-toggle="tooltip" data-bs-placement="top" title="Kopyalamak için tıklayınız" onload="tooltipTetikle($(this))">
+                                                    <div class="d-flex iban-container">
+                                                        <span><?=$banka[iban]?> </span>&nbsp;
+                                                        <button class="btn btn-light d-inline kopyalanabilir"><i class="fas fa-copy"></i></button>
+                                                    </div>
+                                                </td>
+                                                <td hidden=""><input type="text" class="iban-input" value="<?=$banka[iban]?>"></td>
                                             </tr>
+                                            <?php 
+                                                     }
+                                             ?>
                                         </tbody>
                                     </table>
                                 </td>
                             </tr>
                         </table>
                     </div>
+                </div>
+                <div class="row text-light mt-4">
+                    <?php if (!empty($cocuk[hastalik_raporu_url])||!empty($cocuk[valilik_izni_url])) { ?>
+                        <h3 class="mt-4">Dokümanlar</h3>
+                        <ul>
+                            
+                        <?php if (!empty($cocuk[hastalik_raporu_url])) { ?>
+                            <li class="mx-4 belge-link"><a href="#rapor">Hastalık Raporuna Git</a></li>
+                        <?php } ?>
+                        
+                        <?php if (!empty($cocuk[valilik_izni_url])) { ?>
+                            <li class="mx-4 belge-link"><a href="#valilik_izni">Valilik İzin Belgesi'ne Git</a></li>
+                        <?php } ?>
+                        </ul>
+                    <?php } ?>
+                    
+                    <h3 class="mt-4">Detaylı Bilgi</h3>
+                    <article id="expalaination"><?=$cocuk[aciklama]?></article>                    
+                    <?php if (!empty($cocuk[hastalik_raporu_url])) { ?>
+                        <a href="<?=$cocuk[hastalik_raporu_url] ?>" class="mt-4">Hastalık Raporu</a><!-- TODO: Telefonda indirmek istiyor -->
+                        <div style="height: 500px;margin-bottom: 50px;">
+                            <iframe id="hastalik_raporu" src="<?=$cocuk[hastalik_raporu_url] ?>" width="100%" height="500px"></iframe>
+                        </div>
+                    <?php } ?>
+                    
+                    <?php if (!empty($cocuk[valilik_izni_url])) { ?>          
+                        <a href="<?=$cocuk[valilik_izni_url] ?>" class="mt-4">Valilik İzin Belgesi</a>
+                        <div style="height: 500px;margin-bottom: 50px;">
+                            <iframe id="valilik_izni" src="<?=$cocuk[valilik_izni_url] ?>" width="100%" height="500px"></iframe>
+                        </div>
+                    <?php } ?>                
                 </div>
             </div>
         </section>
@@ -191,6 +260,20 @@
 
         }, function(response) {});
     }
+
+    function panoyaKopyala($arg) {
+        let elm = $arg.parent().find(".iban-input")[0];
+        elm.select();
+        elm.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        alert("Kopyalanan IBAN NO: " + elm.value);
+    }
+
+
+    function tooltipTetikle($arg) {
+        var tooltip = new bootstrap.Tooltip($arg[0], {});
+    }
+
     </script>
     <style>
     #facebook_share_btn {
@@ -203,6 +286,17 @@
         border: none;
         border-radius: 3px;
         color: white;
+    }
+    #expalaination {
+        text-align: justify;
+    }
+    .iban-container {
+        cursor: pointer;
+    }
+    a, .belge-link {
+        color: #6e0dbf;
+        text-decoration: none;
+        font-style: italic;
     }
     </style>
 </body>
