@@ -1,7 +1,7 @@
 <?php
 $host="localhost";
-$veritabani = "smakardesim";
-$kullanici = "root";
+$veritabani = "ebjhfnlb_smakardesim";
+$kullanici = "ebjhfnlb_root";
 $sifre = "Sinaps++42";
 
 try{

@@ -48,15 +48,15 @@ function yuzdeRozeti($value)
         "@context": "http://schema.org",
         "@type": "Organization",
         "name": "SMA Kardeşim",
-        "url": "index.html",
+        "url": "index.php",
         "logo": "images/default-logo.png"
     }
     </script>
     <meta property="og:title" content="Çocuklarımız">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#478ac9">
-    <link rel="canonical" href="index.html">
-    <meta property="og:url" content="index.html">
+    <link rel="canonical" href="index.php">
+    <meta property="og:url" content="index.php">
 </head>
 
 <body class="u-body">
@@ -85,11 +85,11 @@ function yuzdeRozeti($value)
                     </div>
                     <div class="u-custom-menu u-nav-container">
                         <ul class="u-nav u-spacing-2 u-unstyled u-nav-1">
-                            <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="index.html" style="padding: 10px 20px;">Anasayfa</a>
+                            <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="index.php" style="padding: 10px 20px;">Anasayfa</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="biz-kimiz.html" style="padding: 10px 20px;">BİZ KİMİZ</a>
+                            <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="biz-kimiz.php" style="padding: 10px 20px;">BİZ KİMİZ</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="iletisim.html" style="padding: 10px 20px;">İLETİŞİM</a>
+                            <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="iletisim.php" style="padding: 10px 20px;">İLETİŞİM</a>
                             </li>
                             <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" style="padding: 10px 20px;">GİRİŞ YAP</a>
                             </li>
@@ -100,11 +100,11 @@ function yuzdeRozeti($value)
                             <div class="u-sidenav-overflow">
                                 <div class="u-menu-close"></div>
                                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.html" style="padding: 10px 20px;">Anasayfa</a>
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 20px;">Anasayfa</a>
                                     </li>
-                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="biz-kimiz.html" style="padding: 10px 20px;">BİZ KİMİZ</a>
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="biz-kimiz.php" style="padding: 10px 20px;">BİZ KİMİZ</a>
                                     </li>
-                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="iletisim.html" style="padding: 10px 20px;">İLETİŞİM</a>
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="iletisim.php" style="padding: 10px 20px;">İLETİŞİM</a>
                                     </li>
                                     <li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 10px 20px;">GİRİŞ YAP</a>
                                     </li>
@@ -121,11 +121,11 @@ function yuzdeRozeti($value)
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="images/3.jpeg" class="w-100">
+                        <img src="<?=$cocuk[resim_url]?>" class="w-100">
                         <div class="d-flex justify-content-between mt-2">
                             <button type="button" class="btn btn-primary">SMA Kardeşim Ol <i class="fas fa-heart text-danger"></i></button>
                             <div class="p-2 rounded bg-info text-light">
-                                <img src="images/kardes.svg" width="20" height="20" alt=""> 10 Kardeş
+                                <img src="images/kardes.svg" width="20" height="20" alt=""> <?=$cocuk[kardes_sayisi]?> Kardeş
                             </div>
                         </div>
                         <div hidden class="fb-share-button" data-href="https://algoritimbilisim.com" data-quote="asdasdsadasd" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Paylaş</a></div>
@@ -206,7 +206,7 @@ function yuzdeRozeti($value)
                         <ul>
                             
                         <?php if (!empty($cocuk[hastalik_raporu_url])) { ?>
-                            <li class="mx-4 belge-link"><a href="#rapor">Hastalık Raporuna Git</a></li>
+                            <li class="mx-4 belge-link"><a href="#hastalik_raporu">Hastalık Raporuna Git</a></li>
                         <?php } ?>
                         
                         <?php if (!empty($cocuk[valilik_izni_url])) { ?>
@@ -254,9 +254,9 @@ function yuzdeRozeti($value)
         FB.ui({
             display: 'popup',
             method: 'share',
-            href: 'http://smakardesim.com/cocugumuz.php',
-            quote: 'İsim Soyisim artık benim SMA Kardeşim. Sen de bize katılmak istersen SMA Kardesim sitesinden İsim Soyisimi kardeş seçerek tedavisine destek olabilirsin.',
-            description: "What happens when you don't take care of your finances? Just look at our country -- you spend irresponsibly, get in debt up to your eyeballs, and stress about how you're going to make ends meet. The difference is that you don't have a glut of taxpayers…",
+            href: 'http://smakardesim.com/cocugumuz.php?id=<?=$id?>',
+            quote: '<?=$cocuk[ad]?> artık benim SMA Kardeşim. Sen de bize katılmak istersen SMA Kardesim sitesinden <?=$cocuk[ad]?>\'i kardeş seçerek tedavisine destek olabilirsin.',
+            description: "Donate us, please",
 
         }, function(response) {});
     }
