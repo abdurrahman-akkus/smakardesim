@@ -2,6 +2,8 @@
 $host="localhost";
 $veritabani = "ebjhfnlb_smakardesim";
 $kullanici = "ebjhfnlb_root";
+//$veritabani = "smakardesim";
+//$kullanici = "root";
 $sifre = "Sinaps++42";
 
 try{

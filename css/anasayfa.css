@@ -752,3 +752,10 @@
     display: flex;
     flex-direction: column;
 }
+
+
+.u-container-layout-1 .u-text,
+.u-container-layout-2 .u-text,
+.u-container-layout-3 .u-text {
+    text-shadow: rgba(3, 169, 244,0.7) 0px 3px 10px;
+}

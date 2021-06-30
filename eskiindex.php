@@ -2,35 +2,8 @@
 <?php 
 $id = isset($_GET['id'])?$_GET['id']:1; 
 $cocuk = $db->query("SELECT * FROM cocuk WHERE id = '{$id}'")->fetch(PDO::FETCH_ASSOC);
-$cocuklarQuery = $db->query("SELECT * FROM cocuk");
-$sliderCocuklarQuery = $db->query("SELECT * FROM cocuk AS c1 JOIN (SELECT id FROM cocuk ORDER BY RAND() LIMIT 2) as c2 ON c1.id=c2.id");
-$hedefeYaklasanlarQuery = $db->query("SELECT * FROM cocuk AS c1 JOIN (SELECT id FROM cocuk ORDER BY RAND() LIMIT 3) as c2 ON c1.id=c2.id WHERE yuzde>=90");
-$yeniBaslayanlarQuery = $db->query("SELECT * FROM cocuk AS c1 JOIN (SELECT id FROM cocuk ORDER BY RAND() LIMIT 3) as c2 ON c1.id=c2.id WHERE yuzde<=10");
+$sliderCocuk = $db->query("SELECT * FROM cocuk AS c1 JOIN (SELECT id FROM cocuk ORDER BY RAND() LIMIT 1) as c2 ON c1.id=c2.id")->fetch(PDO::FETCH_ASSOC);
 $bankalar = $db->query("SELECT * FROM bankaBilgileri WHERE cocuk_id = '{$id}'");
-
-$cocuklar = array();
-$gonulluler = 0;
-$tamamlananlar = 0;
-while ($cocuk = $cocuklarQuery->fetch(PDO::FETCH_ASSOC)) {
-    array_push($cocuklar,$cocuk);
-    $gonulluler+=$cocuk[kardes_sayisi];
-    $tamamlananlar+=$cocuk[tamamlandi_mi]; // Tamamlananlar 1, tamamlanmayanlar 0 olduğu için doğrudan hesaplanma yapıldı.
-}
-
-$sliderCocuklar = array();
-while ($sCocuk = $sliderCocuklarQuery->fetch(PDO::FETCH_ASSOC)) {
-    array_push($sliderCocuklar,$sCocuk);
-}
-
-$hedefeYaklasanlar = array();
-while ($cocuk = $hedefeYaklasanlarQuery->fetch(PDO::FETCH_ASSOC)) {
-    array_push($hedefeYaklasanlar,$cocuk);
-}
-
-$yeniBaslayanlar = array();
-while ($cocuk = $yeniBaslayanlarQuery->fetch(PDO::FETCH_ASSOC)) {
-    array_push($yeniBaslayanlar,$cocuk);
-}
 ?>
 
 <?php 
@@ -138,29 +111,44 @@ function yuzdeRozeti($value)
             <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-valign-top-lg u-valign-top-xl u-sheet-1">
                 <div id="carousel-8d1d" data-interval="5000" data-u-ride="carousel" class="u-carousel u-expanded-width u-slider u-slider-1">
                     <ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-1">
-                        <?php
-                            for ($s = 1; $s <= sizeof($sliderCocuklar); $s++ ) {
-                        ?>
-                        <li data-u-target="#carousel-8d1d" class="<?php if($s==1) echo "u-active"; ?> u-active-palette-1-base u-hover-palette-1-base u-palette-1-light-2 u-shape-circle" data-u-slide-to="<?= $s ?>" style="width: 10px; height: 10px;"></li>
-                        <?php } ?>
+                        <li data-u-target="#carousel-8d1d" class="u-active u-active-palette-1-base u-hover-palette-1-base u-palette-1-light-2 u-shape-circle" data-u-slide-to="0" style="width: 10px; height: 10px;"></li>
+                        <li data-u-target="#carousel-8d1d" class="u-active-palette-1-base u-hover-palette-1-base u-palette-1-light-2 u-shape-circle" data-u-slide-to="1" style="width: 10px; height: 10px;"></li>
+                        <li data-u-target="#carousel-8d1d" class="u-active-palette-1-base u-hover-palette-1-base u-palette-1-light-2 u-shape-circle" data-u-slide-to="2" style="width: 10px; height: 10px;"></li>
+                        <li data-u-target="#carousel-8d1d" class="u-active-palette-1-base u-hover-palette-1-base u-palette-1-light-2 u-shape-circle" data-u-slide-to="3" style="width: 10px; height: 10px;"></li>
+                        <li data-u-target="#carousel-8d1d" class="u-active-palette-1-base u-hover-palette-1-base u-palette-1-light-2 u-shape-circle" data-u-slide-to="4" style="width: 10px; height: 10px;"></li>
                     </ol>
                     <div class="u-carousel-inner" role="listbox">
-                        <?php
-                            $counter = 1;
-                            foreach ($sliderCocuklar as $sCocuk) {
-                        ?>
-                        <div class='<?php if($counter==1) echo "u-active"; ?> u-carousel-item u-container-style u-slide'>
+                        <div class="u-active u-carousel-item u-container-style u-slide">
                             <div class="u-container-layout u-valign-top u-container-layout-1">
                                 <div class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-radius-20 u-shape-round u-white u-group-1">
                                     <div class="u-container-layout u-valign-middle u-container-layout-2">
-                                        <h3 class="u-text u-text-palette-1-base u-text-1"><a href="cocugumuz.php?id=<?=$sCocuk[id]?>"><?=$sCocuk[ad]?> <i class="far fa-arrow-alt-circle-right"></i></a></h3>
-                                        <p class="u-text u-text-palette-1-base u-text-2"><?=$sCocuk[kisa_aciklama]?>&nbsp;</p>
+                                        <h3 class="u-text u-text-palette-1-base u-text-1">Over 50 online games</h3>
+                                        <p class="u-text u-text-palette-1-base u-text-2">Sample text. Click to select the text box. Click again or double click to start editing the text.&nbsp;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.&nbsp;</p>
                                     </div>
                                 </div>
-                                <img src="<?=$sCocuk[resim_url]?>" alt="<?=$sCocuk[ad]."'e ait fotoğraf"?>" class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-round u-radius-20 u-image-1" data-image-width="1000" data-image-height="1500">
+                                <img src="images/baby1.jpg" alt="" class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-round u-radius-20 u-image-1" data-image-width="1000" data-image-height="1500">
                             </div>
                         </div>
-                        <?php $counter++;} ?>
+                        <div class="u-carousel-item u-container-style u-expanded-width u-slide">
+                            <div class="u-container-layout u-container-layout-3">
+                                <div class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-radius-20 u-shape-round u-white u-group-2">
+                                    <div class="u-container-layout u-valign-middle u-container-layout-4">
+                                        <h3 class="u-text u-text-palette-1-base u-text-3">Free games included with Prime, yours to keep forever</h3>
+                                        <p class="u-text u-text-4">Sample text. Click to select the text box. Click again or double click to start editing the text.&nbsp;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.&nbsp;</p>
+                                    </div>
+                                </div>
+                                <img src="images/baby2.jpg" alt="" class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-round u-radius-20 u-image-2" data-image-width="1000" data-image-height="1500">
+                            </div>
+                        </div>
+                        <div class="test-slide u-carousel-item u-container-style u-slide">
+                            <div class="u-container-layout u-container-layout-5"></div>
+                        </div>
+                        <div class="test-slide u-carousel-item u-container-style u-slide">
+                            <div class="u-container-layout u-container-layout-6"></div>
+                        </div>
+                        <div class="test-slide u-carousel-item u-container-style u-slide">
+                            <div class="u-container-layout u-container-layout-7"></div>
+                        </div>
                     </div>
                     <a class="u-absolute-vcenter u-carousel-control u-carousel-control-prev u-spacing-5 u-text-palette-1-base u-carousel-control-1" href="#carousel-8d1d" role="button" data-u-slide="prev">
                         <span aria-hidden="true">
@@ -206,21 +194,21 @@ function yuzdeRozeti($value)
                         <div class="u-align-center u-border-2 u-border-white u-container-style u-list-item u-repeater-item">
                             <div class="u-container-layout u-similar-container u-container-layout-1">
                                 <img src="images/boy.svg" class="counter-icon">
-                                <h1 class="u-text u-title u-text-1" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000"><?=sizeof($cocuklar)?></h1>
+                                <h1 class="u-text u-title u-text-1" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000">500</h1>
                                 <p class="u-text u-text-2">Çocuğumuz</p>
                             </div>
                         </div>
                         <div class="u-align-center u-border-2 u-border-white u-container-style u-list-item u-repeater-item">
                             <div class="u-container-layout u-similar-container u-container-layout-2">
                                 <img src="images/volunteer.svg" class="counter-icon">
-                                <h1 class="u-text u-title u-text-3" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000"><?=$gonulluler?></h1>
+                                <h1 class="u-text u-title u-text-3" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000">800</h1>
                                 <p class="u-text u-text-4">Gönüllü Kardeşimiz</p>
                             </div>
                         </div>
                         <div class="u-align-center u-border-2 u-border-white u-container-style u-list-item u-repeater-item">
                             <div class="u-container-layout u-similar-container u-container-layout-3">
                                 <img src="images/peace.svg" class="counter-icon">
-                                <h1 class="u-text u-title u-text-5" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000"><?=$tamamlananlar ?></h1>
+                                <h1 class="u-text u-title u-text-5" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000">300</h1>
                                 <p class="u-text u-text-6">İlacına Kavuşan Çocuklarımız</p>
                             </div>
                         </div>
@@ -233,29 +221,57 @@ function yuzdeRozeti($value)
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <div class="u-list u-list-1">
                     <div class="u-repeater u-repeater-1">
-                        <?php 
-                            foreach ($hedefeYaklasanlar as $hCocuk) {
-                        ?>
                         <div class="cocuk">
                             <div class="badge-container">
-                                <span class="badge rounded-pill bg-info"><?=$hCocuk[sma_tip]?></span>
+                                <span class="badge rounded-pill bg-info">SMA-1</span>
                             </div>
                             <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
-                                <img src="<?=$hCocuk[resim_url]?>" class="back-img">
+                                <img src="images/3.jpeg" class="back-img">
                                 <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <h3 class="u-text u-text-1"><?=$hCocuk[ad]?></h3>
-                                    <p class="u-text u-text-2"><?=$hCocuk[kisa_aciklama]?></p>
+                                    <h3 class="u-text u-text-1">Sample Headline</h3>
+                                    <p class="u-text u-text-2">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
                                 </div>
                             </div>
                             <div style="margin-top: -5px">
                                 <div class="a-progress orange">
-                                    <div class="a-progress-bar" val="<?=$hCocuk[yuzde]?>" style="width: <?=$hCocuk[yuzde]?>%; background:#f7810e;">
-                                        <div class="a-progress-value"><span><?=$hCocuk[yuzde]?></span>%</div>
+                                    <div class="a-progress-bar" val="45" style="width:45%; background:#f7810e;">
+                                        <div class="a-progress-value"><span>45</span>%</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
+                        <div class="cocuk">
+                            <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
+                                <img src="images/3.jpeg" class="back-img">
+                                <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
+                                    <h3 class="u-text u-text-3">Sample Headline</h3>
+                                    <p class="u-text u-text-4">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+                                </div>
+                            </div>
+                            <div style="margin-top: -5px">
+                                <div class="a-progress orange">
+                                    <div class="a-progress-bar" val="70" style="width:70%; background:#f7810e;">
+                                        <div class="a-progress-value"><span>70</span>%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cocuk">
+                            <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
+                                <img src="images/3.jpeg" class="back-img">
+                                <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
+                                    <h3 class="u-text u-text-5">Sample Headline</h3>
+                                    <p class="u-text u-text-6">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+                                </div>
+                            </div>
+                            <div style="margin-top: -5px">
+                                <div class="a-progress orange" onshow="animate();">
+                                    <div class="a-progress-bar" val="90" style="width:90%; background:#f7810e;">
+                                        <div class="a-progress-value"><span>90</span>%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -265,30 +281,58 @@ function yuzdeRozeti($value)
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <div class="u-list u-list-1">
                     <div class="u-repeater u-repeater-1">
-                        <?php 
-                            foreach ($yeniBaslayanlar as $yCocuk) {
-                        ?>
                         <div class="cocuk">
                             <div class="badge-container">
-                                <span class="badge rounded-pill bg-info"><?=$yCocuk[sma_tip]?></span>
-                                <span class="badge rounded-pill bg-secondary" hidden=""><i class="fas fa-sync-alt"></i> 4g</span>
+                                <span class="badge rounded-pill bg-info">SMA-1</span>
+                                <span class="badge rounded-pill bg-secondary"><i class="fas fa-sync-alt"></i> 4g</span>
                             </div>
                             <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
-                                <img src="<?=$yCocuk[resim_url]?>" class="back-img">
+                                <img src="images/3.jpeg" class="back-img">
                                 <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <h3 class="u-text u-text-1"><?=$yCocuk[ad]?></h3>
-                                    <p class="u-text u-text-2"><?=$yCocuk[kisa_aciklama]?></p>
+                                    <h3 class="u-text u-text-1">Sample Headline</h3>
+                                    <p class="u-text u-text-2">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
                                 </div>
                             </div>
                             <div style="margin-top: -5px">
                                 <div class="a-progress orange">
-                                    <div class="a-progress-bar" val="<?=$yCocuk[yuzde]?>" style="width: <?=$yCocuk[yuzde]?>%; background:#f7810e;">
-                                        <div class="a-progress-value"><span><?=$yCocuk[yuzde]?></span>%</div>
+                                    <div class="a-progress-bar" val="45" style="width:45%; background:#f7810e;">
+                                        <div class="a-progress-value"><span>45</span>%</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
+                        <div class="cocuk">
+                            <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
+                                <img src="images/3.jpeg" class="back-img">
+                                <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
+                                    <h3 class="u-text u-text-3">Sample Headline</h3>
+                                    <p class="u-text u-text-4">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+                                </div>
+                            </div>
+                            <div style="margin-top: -5px">
+                                <div class="a-progress orange">
+                                    <div class="a-progress-bar" val="70" style="width:70%; background:#f7810e;">
+                                        <div class="a-progress-value"><span>70</span>%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cocuk">
+                            <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
+                                <img src="images/3.jpeg" class="back-img">
+                                <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
+                                    <h3 class="u-text u-text-5">Sample Headline</h3>
+                                    <p class="u-text u-text-6">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+                                </div>
+                            </div>
+                            <div style="margin-top: -5px">
+                                <div class="a-progress orange" onshow="animate();">
+                                    <div class="a-progress-bar" val="90" style="width:90%; background:#f7810e;">
+                                        <div class="a-progress-value"><span>90</span>%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
