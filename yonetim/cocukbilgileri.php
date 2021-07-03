@@ -30,5 +30,54 @@ if($islem=="getir"){
 	echo json_encode($cocuk);
 }
 
+if($islem=="genelbilgiler"&&$_SERVER['REQUEST_METHOD'] == "POST"){
+	$sql = "INSERT INTO cocuk (ad,
+		yetkili_adi,
+		iletisim,
+		sma_tip,
+		valilik_izin_baslangic,
+		valilik_izin_bitis,
+		toplanacak,
+		toplanan,
+		birim,
+		kisa_aciklama,
+		aciklama) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
+	$stmt= $db->prepare($sql);
+	$stmt->execute([
+		$data["ad"],
+		$data["yetkili_adi"],
+		$data["iletisim"],
+		$data["sma_tip"],
+		$data["valilik_izin_baslangic"],
+		$data["valilik_izin_bitis"],
+		$data["toplanacak"],
+		$data["toplanan"],
+		$data["birim"],
+		$data["kisa_aciklama"],
+		$data["aciklama"]
+	]);
+	echo $db->lastInsertId();
+}
+
+if($islem=="genelbilgiler"&&$_SERVER['REQUEST_METHOD'] == "PUT"){
+	$sql = 'UPDATE cocuk SET ad=?,yetkili_adi=?,iletisim=?,sma_tip=?,valilik_izin_baslangic=?,valilik_izin_bitis=?,toplanacak=?,toplanan=?,birim=?,kisa_aciklama=?,aciklama=? WHERE id=?';
+
+	$stmt= $db->prepare($sql);
+	$stmt->execute([
+		$data["ad"],
+		$data["yetkili_adi"],
+		$data["iletisim"],
+		$data["sma_tip"],
+		$data["valilik_izin_baslangic"],
+		$data["valilik_izin_bitis"],
+		$data["toplanacak"],
+		$data["toplanan"],
+		$data["birim"],
+		$data["kisa_aciklama"],
+		$data["aciklama"],
+		$data["id"]
+		]);
+	echo 1;
+}
 ?>

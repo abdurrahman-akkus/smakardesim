@@ -145,7 +145,7 @@ $cocukSayisi = sizeof($cocuklar);
                                                     <option value="TRY">₺ Türk Lirası</option>
                                                 </select>
                                             </div>
-                                            <input type="submit" name="submit" value="Kaydet" class="btn btn-default">
+                                            <input type="button" name="submit" value="Kaydet" class="btn btn-default" onclick="kaydet()">
                                             <button type="reset" class="btn btn-default">Temizle</button>
                                         </div>
                                         <div class="col-lg-6">
@@ -291,12 +291,10 @@ $cocukSayisi = sizeof($cocuklar);
                     $("#toplanacak").val(data.toplanacak);
                     $("#toplanan").val(data.toplanan);
                     $("#birim").val(data.birim);
-                    $("#resim").val(data.resim);
                     $("#kisa_aciklama").val(data.kisa_aciklama);
                     $("#kisa_aciklama").prev().html(data.kisa_aciklama);
                     $("#aciklama").val(data.aciklama);
                     $("#aciklama").prev().html(data.aciklama);
-                    $("#valilik_izni").val(data.valilik_izni);
             })
             .catch((error) => {
               console.error('Error:', error);
@@ -307,7 +305,7 @@ $cocukSayisi = sizeof($cocuklar);
         function kaydet() {
             
             let id = $('#cocuk_id').val();
-            method=(id==="")?'POST':'PUT';
+            let method=(id==="")?'POST':'PUT';
 
             fetch('cocukbilgileri.php', {
                 method: method,
@@ -317,7 +315,7 @@ $cocukSayisi = sizeof($cocuklar);
                 body: JSON.stringify({
                     islem:"genelbilgiler",
                     id: id,
-                    yetkili_id:<?=$_SESSION["kullanici_id"]?>
+                    yetkili_id:<?=$_SESSION["kullanici_id"]?>,
                     ad: $("#ad").val(),
                     yetkili_adi: $("#yetkili_adi").val(),
                     iletisim: $("#iletisim").val(),
@@ -327,16 +325,21 @@ $cocukSayisi = sizeof($cocuklar);
                     toplanacak: $("#toplanacak").val(),
                     toplanan: $("#toplanan").val(),
                     birim: $("#birim").val(),
-                    resim: $("#resim").val(),
                     kisa_aciklama: $("#kisa_aciklama").val(),
-                    aciklama: $("#aciklama").val(),
-                    valilik_izni: $("#valilik_izni").val(),
-                }),
+                    aciklama: $("#aciklama").val()
+                })
             })
             .then(response => response.json())
             .then(data => {
-                $('#cocuk_id').append('<option value='+data+'>'+data+'</option>');
-                $('#cocuk_id').val(data);
+                if (method=='POST'&&data!=0) {
+                    $('#cocuk_id').append('<option value='+data+'>'+$("#ad").val()+'</option>');
+                    $('#cocuk_id').val(data);
+                    alert("Kayıt Başarılı");
+                } else if(method=='PUT'&&data==1){
+                    alert("Kayıt Başarılı");
+                } else {
+                    alert("Birşeyler Ters Gitti!");
+                }
             })
             .catch((error) => {
               console.error('Error:', error);
