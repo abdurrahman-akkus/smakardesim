@@ -759,3 +759,7 @@
 .u-container-layout-3 .u-text {
     text-shadow: rgba(3, 169, 244,0.7) 0px 3px 10px;
 }
+
+.u-repeater {
+    grid-auto-rows:unset !important;
+}

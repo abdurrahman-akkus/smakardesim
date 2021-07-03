@@ -243,7 +243,7 @@ function yuzdeRozeti($value)
                             <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
                                 <img src="<?=$hCocuk[resim_url]?>" class="back-img">
                                 <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <h3 class="u-text u-text-1"><?=$hCocuk[ad]?></h3>
+                                    <h3 class="u-text u-text-1"><a href="cocugumuz.php?id=<?=$hCocuk[id]?>"><?=$hCocuk[ad]?> <i class="far fa-arrow-alt-circle-right"></i></a></h3>
                                     <p class="u-text u-text-2"><?=$hCocuk[kisa_aciklama]?></p>
                                 </div>
                             </div>
@@ -276,7 +276,7 @@ function yuzdeRozeti($value)
                             <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
                                 <img src="<?=$yCocuk[resim_url]?>" class="back-img">
                                 <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <h3 class="u-text u-text-1"><?=$yCocuk[ad]?></h3>
+                                    <h3 class="u-text u-text-1"><a href="cocugumuz.php?id=<?=$yCocuk[id]?>"><?=$yCocuk[ad]?> <i class="far fa-arrow-alt-circle-right"></i></a></h3>
                                     <p class="u-text u-text-2"><?=$yCocuk[kisa_aciklama]?></p>
                                 </div>
                             </div>
