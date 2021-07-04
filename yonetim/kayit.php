@@ -269,7 +269,7 @@ $cocukSayisi = sizeof($cocuklar);
                     "yetkili_id":<?=$_SESSION["kullanici_id"]?>
                 };
 
-            fetch('cocukbilgileri.php', {
+            fetch('cocuk-api.php', {
                 method: 'POST', // or 'PUT'
                 headers: {
                 'Content-Type': 'application/json',
@@ -307,7 +307,7 @@ $cocukSayisi = sizeof($cocuklar);
             let id = $('#cocuk_id').val();
             let method=(id==="")?'POST':'PUT';
 
-            fetch('cocukbilgileri.php', {
+            fetch('cocuk-api.php', {
                 method: method,
                 headers: {
                 'Content-Type': 'application/json',

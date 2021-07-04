@@ -540,6 +540,10 @@ iframe {
   opacity: 1;
 }
 
+.invalid {
+  border-color: red;
+}
+
 @media (max-width: 992px) {
   .alert-validate::before {
     visibility: visible;
