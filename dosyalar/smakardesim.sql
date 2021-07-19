@@ -96,14 +96,14 @@ DROP TABLE IF EXISTS `kullanici`;
 CREATE TABLE `kullanici` (
   `id` int NOT NULL AUTO_INCREMENT,
   `kullanici_adi` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `eposta` varchar(100) DEFAULT NULL,
+  `eposta` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `sifre` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `yetki` int DEFAULT NULL,
   `aktif_mi` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `kullanici_UN` (`kullanici_adi`),
   UNIQUE KEY `eposta_UN` (`eposta`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,4 +125,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-04 18:14:00
+-- Dump completed on 2021-07-04 21:21:17
