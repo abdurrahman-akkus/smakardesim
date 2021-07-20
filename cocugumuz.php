@@ -117,15 +117,15 @@ function yuzdeRozeti($value)
             </div>
         </header>
         <section class="u-clearfix u-section-3" id="sec-468f">
-            <h1 class="u-text u-title"><?=$cocuk[ad]?></h1>
+            <h1 class="u-text u-title"><?=$cocuk["ad"]?></h1>
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="<?=$cocuk[resim_url]?>" class="w-100">
+                        <img src="<?=$cocuk["resim_url"]?>" class="w-100">
                         <div class="d-flex justify-content-between mt-2">
                             <button type="button" class="btn btn-primary">SMA Kardeşim Ol <i class="fas fa-heart text-danger"></i></button>
                             <div class="p-2 rounded bg-info text-light">
-                                <img src="images/kardes.svg" width="20" height="20" alt=""> <?=$cocuk[kardes_sayisi]?> Kardeş
+                                <img src="images/kardes.svg" width="20" height="20" alt=""> <?=$cocuk["kardes_sayisi"]?> Kardeş
                             </div>
                         </div>
                         <div hidden class="fb-share-button" data-href="https://algoritimbilisim.com" data-quote="asdasdsadasd" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Paylaş</a></div>
@@ -136,34 +136,34 @@ function yuzdeRozeti($value)
                         <table class="table table-striped text-light">
                             <tr>
                                 <td>Yetkili Adı</td>
-                                <td><?=$cocuk[yetkili_adi]?></td>
+                                <td><?=$cocuk["yetkili_adi"]?></td>
                             </tr>
                             <tr>
                                 <td>İletişim</td>
-                                <td><?=$cocuk[iletisim]?></td>
+                                <td><?=$cocuk["iletisim"]?></td>
                             </tr>
                             <tr>
                                 <td>SMA Tipi</td>
-                                <td><?=$cocuk[sma_tip]?></td>
+                                <td><?=$cocuk["sma_tip"]?></td>
                             </tr>
                             <tr>
                                 <td>Valilik İzni Başlangıç-Bitiş Tarihi</td>
-                                <td><?=DateTime::createFromFormat($orijinalFormat, $cocuk[valilik_izin_baslangic])->format("d.m.Y")
-                                ."-".DateTime::createFromFormat($orijinalFormat,$cocuk[valilik_izin_bitis])->format("d.m.Y")?></td>
+                                <td><?=DateTime::createFromFormat($orijinalFormat, $cocuk["valilik_izin_baslangic"])->format("d.m.Y")
+                                ."-".DateTime::createFromFormat($orijinalFormat,$cocuk["valilik_izin_bitis"])->format("d.m.Y")?></td>
                             </tr>
                             <tr>
                                 <td>Toplanacak Miktar</td>
-                                <td><?=$cocuk[toplanacak].$cocuk[birim]?></td>
+                                <td><?=$cocuk["toplanacak"].$cocuk["birim"]?></td>
                             </tr>
                             <tr>
                                 <td>Toplanan Miktar</td>
-                                <td><?=$cocuk[toplanan].$cocuk[birim]?>
-                                    <span class="badge <?php echo yuzdeRozeti($cocuk[yuzde])?>"><?="%".$cocuk[yuzde]?></span>
+                                <td><?=$cocuk["toplanan"].$cocuk["birim"]?>
+                                    <span class="badge <?php echo yuzdeRozeti($cocuk["yuzde"])?>"><?="%".$cocuk["yuzde"]?></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Son Güncelleme Tarihi</td>
-                                <td><?=DateTime::createFromFormat($orijinalZamanDamgasiFormat,$cocuk[guncelleme_ani])->format("d.m.Y H:i:s")?></td>
+                                <td><?=DateTime::createFromFormat($orijinalZamanDamgasiFormat,$cocuk["guncelleme_ani"])->format("d.m.Y H:i:s")?></td>
                             </tr>
                             <tr>
                                 <td colspan="2">
@@ -180,15 +180,15 @@ function yuzdeRozeti($value)
                                                 while ($banka = $bankalar->fetch(PDO::FETCH_ASSOC)) {
                                             ?>
                                             <tr>
-                                                <td><?=$banka[banka]?></td>
-                                                <td><?=$banka[birim]?></td>
+                                                <td><?=$banka["banka"]?></td>
+                                                <td><?=$banka["birim"]?></td>
                                                 <td class="kopyalanabilir" data-bs-toggle="tooltip" data-bs-placement="top" title="Kopyalamak için tıklayınız" onload="tooltipTetikle($(this))">
                                                     <div class="d-flex iban-container">
-                                                        <span><?=$banka[iban]?> </span>&nbsp;
+                                                        <span><?=$banka["iban"]?> </span>&nbsp;
                                                         <button class="btn btn-light d-inline kopyalanabilir"><i class="fas fa-copy"></i></button>
                                                     </div>
                                                 </td>
-                                                <td hidden=""><input type="text" class="iban-input" value="<?=$banka[iban]?>"></td>
+                                                <td hidden=""><input type="text" class="iban-input" value="<?=$banka["iban"]?>"></td>
                                             </tr>
                                             <?php 
                                                      }
@@ -201,33 +201,33 @@ function yuzdeRozeti($value)
                     </div>
                 </div>
                 <div class="row text-light mt-4">
-                    <?php if (!empty($cocuk[hastalik_raporu_url])||!empty($cocuk[valilik_izni_url])) { ?>
+                    <?php if (!empty($cocuk["hastalik_raporu_url"])||!empty($cocuk["valilik_izni_url"])) { ?>
                         <h3 class="mt-4">Dokümanlar</h3>
                         <ul>
                             
-                        <?php if (!empty($cocuk[hastalik_raporu_url])) { ?>
+                        <?php if (!empty($cocuk["hastalik_raporu_url"])) { ?>
                             <li class="mx-4 belge-link"><a href="#hastalik_raporu">Hastalık Raporuna Git</a></li>
                         <?php } ?>
                         
-                        <?php if (!empty($cocuk[valilik_izni_url])) { ?>
+                        <?php if (!empty($cocuk["valilik_izni_url"])) { ?>
                             <li class="mx-4 belge-link"><a href="#valilik_izni">Valilik İzin Belgesi'ne Git</a></li>
                         <?php } ?>
                         </ul>
                     <?php } ?>
                     
                     <h3 class="mt-4">Detaylı Bilgi</h3>
-                    <article id="expalaination"><?=$cocuk[aciklama]?></article>                    
-                    <?php if (!empty($cocuk[hastalik_raporu_url])) { ?>
-                        <a href="<?=$cocuk[hastalik_raporu_url] ?>" class="mt-4">Hastalık Raporu</a><!-- TODO: Telefonda indirmek istiyor -->
+                    <article id="expalaination"><?=$cocuk["aciklama"]?></article>
+                    <?php if (!empty($cocuk["hastalik_raporu_url"])) { ?>
+                        <a href="<?=$cocuk["hastalik_raporu_url"] ?>" class="mt-4">Hastalık Raporu</a><!-- TODO: Telefonda indirmek istiyor -->
                         <div style="height: 500px;margin-bottom: 50px;">
-                            <iframe id="hastalik_raporu" src="<?=$cocuk[hastalik_raporu_url] ?>" width="100%" height="500px"></iframe>
+                            <iframe id="hastalik_raporu" src="<?=$cocuk["hastalik_raporu_url"] ?>" width="100%" height="500px"></iframe>
                         </div>
                     <?php } ?>
                     
-                    <?php if (!empty($cocuk[valilik_izni_url])) { ?>          
-                        <a href="<?=$cocuk[valilik_izni_url] ?>" class="mt-4">Valilik İzin Belgesi</a>
+                    <?php if (!empty($cocuk["valilik_izni_url"])) { ?>
+                        <a href="<?=$cocuk["valilik_izni_url"] ?>" class="mt-4">Valilik İzin Belgesi</a>
                         <div style="height: 500px;margin-bottom: 50px;">
-                            <iframe id="valilik_izni" src="<?=$cocuk[valilik_izni_url] ?>" width="100%" height="500px"></iframe>
+                            <iframe id="valilik_izni" src="<?=$cocuk["valilik_izni_url"] ?>" width="100%" height="500px"></iframe>
                         </div>
                     <?php } ?>                
                 </div>
@@ -255,7 +255,7 @@ function yuzdeRozeti($value)
             display: 'popup',
             method: 'share',
             href: 'http://smakardesim.com/cocugumuz.php?id=<?=$id?>',
-            quote: '<?=$cocuk[ad]?> artık benim SMA Kardeşim. Sen de bize katılmak istersen SMA Kardesim sitesinden <?=$cocuk[ad]?>\'i kardeş seçerek tedavisine destek olabilirsin.',
+            quote: '<?=$cocuk["ad"]?> artık benim SMA Kardeşim. Sen de bize katılmak istersen SMA Kardesim sitesinden <?=$cocuk["ad"]?>\'i kardeş seçerek tedavisine destek olabilirsin.',
             description: "Donate us, please",
 
         }, function(response) {});
