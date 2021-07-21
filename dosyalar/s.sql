@@ -18,7 +18,7 @@
 --
 -- Table structure for table `bankaBilgileri`
 --
-
+USE sma_kardesim;
 DROP TABLE IF EXISTS `bankaBilgileri`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -94,12 +94,12 @@ DROP TABLE IF EXISTS `kullanici`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `kullanici` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `kullanici_adi` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `sifre` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `kullanici_adi` varchar(25) NOT NULL,
+  `sifre` varchar(12) NOT NULL,
   `yetki` int DEFAULT NULL,
   `aktif_mi` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

@@ -1,6 +1,6 @@
 <?php include 'util/connect.php'; ?>
 <?php 
-$id = isset($_GET['id'])?$_GET['id']:1; 
+$id = isset($_GET["id"])?$_GET["id"]:1; 
 $cocuk = $db->query("SELECT * FROM cocuk WHERE id = '{$id}'")->fetch(PDO::FETCH_ASSOC);
 $cocuklarQuery = $db->query("SELECT * FROM cocuk");
 $sliderCocuklarQuery = $db->query("SELECT * FROM cocuk AS c1 JOIN (SELECT id FROM cocuk ORDER BY RAND() LIMIT 2) as c2 ON c1.id=c2.id");
@@ -13,8 +13,8 @@ $gonulluler = 0;
 $tamamlananlar = 0;
 while ($cocuk = $cocuklarQuery->fetch(PDO::FETCH_ASSOC)) {
     array_push($cocuklar,$cocuk);
-    $gonulluler+=$cocuk[kardes_sayisi];
-    $tamamlananlar+=$cocuk[tamamlandi_mi]; // Tamamlananlar 1, tamamlanmayanlar 0 olduğu için doğrudan hesaplanma yapıldı.
+    $gonulluler+=$cocuk["kardes_sayisi"];
+    $tamamlananlar+=$cocuk["tamamlandi_mi"]; // Tamamlananlar 1, tamamlanmayanlar 0 olduğu için doğrudan hesaplanma yapıldı.
 }
 
 $sliderCocuklar = array();
@@ -153,11 +153,11 @@ function yuzdeRozeti($value)
                             <div class="u-container-layout u-valign-top u-container-layout-1">
                                 <div class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-radius-20 u-shape-round u-white u-group-1">
                                     <div class="u-container-layout u-valign-middle u-container-layout-2">
-                                        <h3 class="u-text u-text-palette-1-base u-text-1"><a href="cocugumuz.php?id=<?=$sCocuk[id]?>"><?=$sCocuk[ad]?> <i class="far fa-arrow-alt-circle-right"></i></a></h3>
-                                        <p class="u-text u-text-palette-1-base u-text-2"><?=$sCocuk[kisa_aciklama]?>&nbsp;</p>
+                                        <h3 class="u-text u-text-palette-1-base u-text-1"><a href="cocugumuz.php?id=<?=$sCocuk["id"]?>"><?=$sCocuk["ad"]?> <i class="far fa-arrow-alt-circle-right"></i></a></h3>
+                                        <p class="u-text u-text-palette-1-base u-text-2"><?=$sCocuk["kisa_aciklama"]?>&nbsp;</p>
                                     </div>
                                 </div>
-                                <img src="<?=$sCocuk[resim_url]?>" alt="<?=$sCocuk[ad]."'e ait fotoğraf"?>" class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-round u-radius-20 u-image-1" data-image-width="1000" data-image-height="1500">
+                                <img src="<?=$sCocuk["resim_url"]?>" alt="<?=$sCocuk["ad"]."'e ait fotoğraf"?>" class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-round u-radius-20 u-image-1" data-image-width="1000" data-image-height="1500">
                             </div>
                         </div>
                         <?php $counter++;} ?>
@@ -195,7 +195,7 @@ function yuzdeRozeti($value)
                         </span>
                     </a>
                 </div>
-                <a href="/tum-cocuklarimiz.php" class="u-align-center u-btn u-button-style u-hover-white u-palette-1-base u-btn-1">Tüm çocuklarımız<br>
+                <a href="cocuklarimiz.php" class="u-align-center u-btn u-button-style u-hover-white u-palette-1-base u-btn-1">Tüm çocuklarımız<br>
                 </a>
             </div>
         </section>
@@ -238,19 +238,19 @@ function yuzdeRozeti($value)
                         ?>
                         <div class="cocuk">
                             <div class="badge-container">
-                                <span class="badge rounded-pill bg-info"><?=$hCocuk[sma_tip]?></span>
+                                <span class="badge rounded-pill bg-info"><?=$hCocuk["sma_tip"]?></span>
                             </div>
                             <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
-                                <img src="<?=$hCocuk[resim_url]?>" class="back-img">
+                                <img src="<?=$hCocuk["resim_url"]?>" class="back-img">
                                 <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <h3 class="u-text u-text-1"><?=$hCocuk[ad]?></h3>
-                                    <p class="u-text u-text-2"><?=$hCocuk[kisa_aciklama]?></p>
+                                    <h3 class="u-text u-text-1"><?=$hCocuk["ad"]?></h3>
+                                    <p class="u-text u-text-2"><?=$hCocuk["kisa_aciklama"]?></p>
                                 </div>
                             </div>
                             <div style="margin-top: -5px">
                                 <div class="a-progress orange">
-                                    <div class="a-progress-bar" val="<?=$hCocuk[yuzde]?>" style="width: <?=$hCocuk[yuzde]?>%; background:#f7810e;">
-                                        <div class="a-progress-value"><span><?=$hCocuk[yuzde]?></span>%</div>
+                                    <div class="a-progress-bar" val="<?=$hCocuk["yuzde"]?>" style="width: <?=$hCocuk["yuzde"]?>%; background:#f7810e;">
+                                        <div class="a-progress-value"><span><?=$hCocuk["yuzde"]?></span>%</div>
                                     </div>
                                 </div>
                             </div>
@@ -270,20 +270,20 @@ function yuzdeRozeti($value)
                         ?>
                         <div class="cocuk">
                             <div class="badge-container">
-                                <span class="badge rounded-pill bg-info"><?=$yCocuk[sma_tip]?></span>
+                                <span class="badge rounded-pill bg-info"><?=$yCocuk["sma_tip"]?></span>
                                 <span class="badge rounded-pill bg-secondary" hidden=""><i class="fas fa-sync-alt"></i> 4g</span>
                             </div>
                             <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
-                                <img src="<?=$yCocuk[resim_url]?>" class="back-img">
+                                <img src="<?=$yCocuk["resim_url"]?>" class="back-img">
                                 <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <h3 class="u-text u-text-1"><?=$yCocuk[ad]?></h3>
-                                    <p class="u-text u-text-2"><?=$yCocuk[kisa_aciklama]?></p>
+                                    <h3 class="u-text u-text-1"><?=$yCocuk["ad"]?></h3>
+                                    <p class="u-text u-text-2"><?=$yCocuk["kisa_aciklama"]?></p>
                                 </div>
                             </div>
                             <div style="margin-top: -5px">
                                 <div class="a-progress orange">
-                                    <div class="a-progress-bar" val="<?=$yCocuk[yuzde]?>" style="width: <?=$yCocuk[yuzde]?>%; background:#f7810e;">
-                                        <div class="a-progress-value"><span><?=$yCocuk[yuzde]?></span>%</div>
+                                    <div class="a-progress-bar" val="<?=$yCocuk["yuzde"]?>" style="width: <?=$yCocuk["yuzde"]?>%; background:#f7810e;">
+                                        <div class="a-progress-value"><span><?=$yCocuk["yuzde"]?></span>%</div>
                                     </div>
                                 </div>
                             </div>
