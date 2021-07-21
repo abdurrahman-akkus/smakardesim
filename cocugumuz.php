@@ -91,7 +91,7 @@ function yuzdeRozeti($value)
                             </li>
                             <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="iletisim.php" style="padding: 10px 20px;">İLETİŞİM</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="yonetim/index.php" style="padding: 10px 20px;">GİRİŞ YAP</a>
+                            <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" style="padding: 10px 20px;">GİRİŞ YAP</a>
                             </li>
                         </ul>
                     </div>
@@ -106,7 +106,7 @@ function yuzdeRozeti($value)
                                     </li>
                                     <li class="u-nav-item"><a class="u-button-style u-nav-link" href="iletisim.php" style="padding: 10px 20px;">İLETİŞİM</a>
                                     </li>
-                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="yonetim/index.php" style="padding: 10px 20px;">GİRİŞ YAP</a>
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 10px 20px;">GİRİŞ YAP</a>
                                     </li>
                                 </ul>
                             </div>
@@ -216,7 +216,7 @@ function yuzdeRozeti($value)
                     <?php } ?>
                     
                     <h3 class="mt-4">Detaylı Bilgi</h3>
-                    <article id="expalaination"><?=$cocuk["aciklama"]?></article>
+                    <article id="expalaination"><?=$cocuk["aciklama"]?></article>                    
                     <?php if (!empty($cocuk["hastalik_raporu_url"])) { ?>
                         <a href="<?=$cocuk["hastalik_raporu_url"] ?>" class="mt-4">Hastalık Raporu</a><!-- TODO: Telefonda indirmek istiyor -->
                         <div style="height: 500px;margin-bottom: 50px;">
@@ -224,7 +224,7 @@ function yuzdeRozeti($value)
                         </div>
                     <?php } ?>
                     
-                    <?php if (!empty($cocuk["valilik_izni_url"])) { ?>
+                    <?php if (!empty($cocuk["valilik_izni_url"])) { ?>          
                         <a href="<?=$cocuk["valilik_izni_url"] ?>" class="mt-4">Valilik İzin Belgesi</a>
                         <div style="height: 500px;margin-bottom: 50px;">
                             <iframe id="valilik_izni" src="<?=$cocuk["valilik_izni_url"] ?>" width="100%" height="500px"></iframe>

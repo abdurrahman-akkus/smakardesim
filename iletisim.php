@@ -65,7 +65,7 @@
                             </li>
                             <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="iletisim.php" style="padding: 10px 20px;">İLETİŞİM</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="yonetim/index.php" style="padding: 10px 20px;">GİRİŞ YAP</a>
+                            <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" style="padding: 10px 20px;">GİRİŞ YAP</a>
                             </li>
                         </ul>
                     </div>
@@ -80,7 +80,7 @@
                                     </li>
                                     <li class="u-nav-item"><a class="u-button-style u-nav-link" href="iletisim.php" style="padding: 10px 20px;">İLETİŞİM</a>
                                     </li>
-                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="yonetim/index.php" style="padding: 10px 20px;">GİRİŞ YAP</a>
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 10px 20px;">GİRİŞ YAP</a>
                                     </li>
                                 </ul>
                             </div>

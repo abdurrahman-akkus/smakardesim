@@ -2,8 +2,9 @@
 $host="localhost";
 //$veritabani = "ebjhfnlb_smakardesim";
 //$kullanici = "ebjhfnlb_root";
-$veritabani = "smakardesim";
+$veritabani = "sma_kardesim";
 $kullanici = "root";
+//$sifre = "Sinaps++42";
 $sifre = "";
 
 try{
@@ -14,4 +15,5 @@ try{
    
    echo $error->getMessage();
 }
+
 ?>
