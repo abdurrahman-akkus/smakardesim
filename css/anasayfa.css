@@ -515,7 +515,7 @@
 }
 
 .u-section-3 .u-text-1 {
-    margin: 270px 87px 0 0;
+    margin: 100px 87px 0 0;
 }
 
 .u-section-3 .u-text-2 {
@@ -740,8 +740,30 @@
 
 /* a-PROGRESS BAR*/
 
+.cocuklar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .cocuk {
     position: relative;
+    height: 300px;
+    width: 450px;
+    margin: 10px;
+}
+
+.cocuk-aciklama {
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    padding: 4px;
+    overflow: hidden;
+    max-height: 100px;
+}
+
+.cocuk-aciklama p {
+    all: unset;
 }
 
 .badge-container {
@@ -758,4 +780,8 @@
 .u-container-layout-2 .u-text,
 .u-container-layout-3 .u-text {
     text-shadow: rgba(3, 169, 244,0.7) 0px 3px 10px;
+}
+
+.u-container-style.u-list-item.u-repeater-item {
+    height: calc(100% - 10px);
 }

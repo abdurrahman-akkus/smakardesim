@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == "PUT"){
 	$sql = 'UPDATE kullanici SET kullanici_adi=?,eposta=?,sifre=?,yetki=?,aktif_mi=? WHERE id=?';
 
 	$stmt= $db->prepare($sql);
-	$stmt->execute([
+	$update=$stmt->execute([
 		$data["kullanici_adi"],
 		$data["eposta"],
 		$data["sifre"],
@@ -43,6 +43,10 @@ if($_SERVER['REQUEST_METHOD'] == "PUT"){
 		$data["aktif_mi"],
 		$data["id"]
 		]);
-	echo 1;
+	if ($update) {
+		echo 1;
+	} else {
+		echo 0;
+	}
 }
 ?>
