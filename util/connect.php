@@ -4,8 +4,8 @@ $host="localhost";
 //$kullanici = "ebjhfnlb_root";
 $veritabani = "smakardesim";
 $kullanici = "root";
-//$sifre = "Sinaps++42";
-$sifre = "27648Onur";
+$sifre = "Sinaps++42";
+//$sifre = "";
 
 try{
 	$db = new PDO("mysql:host=$host;dbname=$veritabani;charset=utf8",$kullanici,$sifre);

@@ -200,8 +200,11 @@ function yuzdeRozeti($value)
                         <table class="table table-striped text-light">
                             <tr>
                                 <td>Yetkili Adı</td>
-                                <td><?= $cocuk["yetkili_adi"] ?></td>
+                                <td><span id="yetkili_adi"><?=$cocuk["yetkili_adi"]?></span> <span id="yetkili_soyadi"><?=$cocuk["yetkili_soyadi"]?></span></td>
                             </tr>
+                            <tr>
+                                <td>Faaliyet No</td>
+                                <td><span id="faaliyet_no"><?=$cocuk["faaliyet_no"]?></span> <button class="btn btn-info" onclick="valilikİzinKontrol()"  data-toggle="modal" data-target="#valilik_izni_modal">SORGULA</button></td>
                             <tr>
                                 <td>İletişim</td>
                                 <td><?= $cocuk["iletisim"] ?></td>
@@ -264,6 +267,7 @@ function yuzdeRozeti($value)
                         </table>
                     </div>
                 </div>
+
                 <div class="row text-light mt-4">
                     <?php if (!empty($cocuk["hastalik_raporu_url"]) || !empty($cocuk["valilik_izni_url"])) { ?>
                         <h3 class="mt-4">Dokümanlar</h3>
@@ -280,29 +284,72 @@ function yuzdeRozeti($value)
                     <?php } ?>
 
                     <h3 class="mt-4">Detaylı Bilgi</h3>
-                    <article id="expalaination"><?= $cocuk["aciklama"] ?></article>
-                    <?php if (!empty($cocuk["hastalik_raporu_url"])) { ?>
-                        <a href="<?= $cocuk["hastalik_raporu_url"] ?>" class="mt-4">Hastalık Raporu</a>
-                        <!-- TODO: Telefonda indirmek istiyor -->
+                    <article id="expalaination"><?=$cocuk["aciklama"]?></article>                    
+                    <?php if (!empty($cocuk["hastalik_raporu_url"])) {  ?>
+                        <a href="<?=$cocuk["hastalik_raporu_url"] ?>" class="mt-4">Hastalık Raporu <i class="fas fa-download"></i></a><!-- TODO: Telefonda indirmek istiyor -->
+                    <?php if ($cocuk["hastalik_raporu_turu"]=="pdf") { ?>
                         <div style="height: 500px;margin-bottom: 50px;">
                             <iframe id="hastalik_raporu" src="<?= $cocuk["hastalik_raporu_url"] ?>" width="100%" height="500px"></iframe>
                         </div>
-                    <?php } ?>
-
+                    <?php } else { ?>
+                        <img src="<?=$cocuk["hastalik_raporu_url"] ?>" alt="<?=$cocuk["ad"] ?> Hastalık Raporu">
+                    <?php }} ?>
+                    
                     <?php if (!empty($cocuk["valilik_izni_url"])) { ?>
-                        <a href="<?= $cocuk["valilik_izni_url"] ?>" class="mt-4">Valilik İzin Belgesi</a>
+                        <a href="<?=$cocuk["valilik_izni_url"] ?>" class="mt-4">Valilik İzin Belgesi <i class="fas fa-download"></i></a>
+                    <?php if ($cocuk["valilik_izin_turu"]=="pdf") {
+                        ?>          
                         <div style="height: 500px;margin-bottom: 50px;">
                             <iframe id="valilik_izni" src="<?= $cocuk["valilik_izni_url"] ?>" width="100%" height="500px"></iframe>
                         </div>
-                    <?php } ?>
+                    <?php } else { ?>   
+                        <img src="<?=$cocuk["valilik_izni_url"] ?>" alt="<?=$cocuk["ad"] ?> Valilik İzni">
+                    <?php }} ?>             
                 </div>
             </div>
         </section>
         <footer class="u-align-left u-clearfix u-footer" id="sec-0463">
             <div class="u-clearfix u-sheet u-sheet-1"></div>
         </footer>
+
+
+      
     </main>
+
+<!-- Modal -->
+<div class="modal fade show" id="valilik_izni_modal" tabindex="-1" role="dialog" aria-labelledby="valilikIzniLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Valilik İzin Detayı</h4>
+      </div>
+      <div class="modal-body scrollable">
+        <table class="table table-striped" id="valilik_sorgu_tablosu">
+            <thead>
+                <tr>
+                    <th>Adı Soyadı</th>
+                    <th>Faaliyet Kapsamı (İl-İlçe)</th>
+                    <th>İzin Veren Makam</th>
+                    <th>Yardım Toplama Amacı</th>
+                    <th>Yardım Toplama Türü</th>
+                    <th>Yardım Toplama Şekli</th>
+                    <th>Yardım Toplama Başlangıç Tarihi</th>
+                    <th>Yardım Toplama Bitiş Tarihi</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
     <div id="fb-root"></div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.v3.3.7.min.js"></script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v11.0" nonce="0UA9fOjz"></script>
     <script>
         window.fbAsyncInit = function() {
@@ -353,6 +400,63 @@ function yuzdeRozeti($value)
             })
 
         }
+
+    function valilikİzinKontrol() {
+        
+        fetch('yonetim/valilik-izni-api.php', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                islem: "izin_kontrol",
+                dataList: JSON.stringify({
+                    "FaliyetNo":$('#faaliyet_no').text(),
+                    "Ad":$('#yetkili_adi').text(),
+                    "Soyad":$('#yetkili_soyadi').text()
+                })
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            $('#valilik_sorgu_tablosu tbody').html("");
+            for(datum of data.Data) {
+               $('#valilik_sorgu_tablosu tbody').append(
+                "<tr>"
+                +"<td>"+ datum.YardimToplayanAd+"</td>"
+                +"<td>"+ datum.FaaliyetKapsamiStr+"</td>"
+                +"<td>"+ datum.IzinVerenMakamIlIlce+"</td>"
+                +"<td>"+ datum.FaaliyetAmaciStr+"</td>"
+                +"<td>"+ datum.YardimToplamaTuruStr+"</td>"
+                +"<td>"+ datum.YardimToplamaSekliStr+"</td>"
+                +"<td>"+ tarihFormatla(parseInt(datum.DtBaslangic.substring(6,19)))+"</td>"
+                +"<td>"+ tarihFormatla(parseInt(datum.DtBitis.substring(6,19)))+"</td>"
+                +"</tr>"
+               );
+
+               console.log(datum.DtBaslangic.substring(6,19));
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    function tarihFormatla(tarih) {
+        tarih = new Date(tarih);
+        return sifirEkleme(tarih.getDate())+
+          "/"+(sifirEkleme(tarih.getMonth()+1))+
+          "/"+tarih.getFullYear()+
+          " "+sifirEkleme(tarih.getHours())+
+          ":"+sifirEkleme(tarih.getMinutes())+
+          ":"+sifirEkleme(tarih.getSeconds());
+    }
+
+    function sifirEkleme(n) {
+        return n > 9 ? "" + n : "0" + n;
+    }
+      
     </script>
     <!-- Sma KArdeişm ol button fonksiyonu -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
@@ -362,34 +466,31 @@ function yuzdeRozeti($value)
     <script src="./js/cardModalJs.js"></script>
 
     <style>
-        #facebook_share_btn {
-            background: #2d4485;
-        }
-
-        #twitter_share_btn {
-            background: #1da1f2;
-        }
-
-        .share-btn {
-            border: none;
-            border-radius: 3px;
-            color: white;
-        }
-
-        #expalaination {
-            text-align: justify;
-        }
-
-        .iban-container {
-            cursor: pointer;
-        }
-
-        a,
-        .belge-link {
-            color: #6e0dbf;
-            text-decoration: none;
-            font-style: italic;
-        }
+    #facebook_share_btn {
+        background: #2d4485;
+    }
+    #twitter_share_btn {
+        background:#1da1f2;
+    }
+    .share-btn {
+        border: none;
+        border-radius: 3px;
+        color: white;
+    }
+    #expalaination {
+        text-align: justify;
+    }
+    .iban-container {
+        cursor: pointer;
+    }
+    a, .belge-link {
+        color: #6e0dbf;
+        text-decoration: none;
+        font-style: italic;
+    }
+    .scrollable {
+        overflow: scroll;
+    }
     </style>
 </body>
 

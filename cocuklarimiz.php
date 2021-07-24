@@ -138,7 +138,7 @@ function yuzdeRozeti($value)
                <?php foreach ($cocuklar as $cocuk): ?>
                   <?php if (file_exists($cocuk['resim_url'])): ?>
                   <a href="/smakardesim/cocugumuz.php?id=<?=$cocuk['id'] ?>" data-title="<?=$cocuk['ad'] ?>" class="cocuk-class">
-                     <img src="<?=$cocuk['resim_url'] ?>" alt="<?=$cocuk['kisa_aciklama'] ?>" data-id="<?=$cocuk['id'] ?>" data-title="<?=$cocuk['ad'] ?>" width="450" height="300">
+                     <img src="<?=$cocuk['resim_url'] ?>" alt="" data-id="<?=$cocuk['id'] ?>" data-title="<?=$cocuk['ad'] ?>" width="450" height="300">
                      <span class="cocuk cocuk-ad badge"><?=$cocuk['ad'] ?></span>
                      <div class="cocuk-sma-tipi">
                         <span class="badge badge-pill bg-info"><?=$cocuk['sma_tip'] ?></span>

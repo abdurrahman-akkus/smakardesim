@@ -33,21 +33,34 @@ if ($islem == "getir") {
 if ($islem == "genelbilgiler" && $_SERVER['REQUEST_METHOD'] == "POST") {
     $sql = "INSERT INTO cocuk (ad,
 		yetkili_adi,
+        yetkili_soyadi,
+        faaliyet_no,
 		iletisim,
 		sma_tip,
 		valilik_izin_baslangic,
 		valilik_izin_bitis,
-		valilik_izni_url
+		valilik_izni_url,
+        hastalik_raporu_url,
+        resim_url,
 		toplanacak,
 		toplanan,
+        yuzde,
 		birim,
 		kisa_aciklama,
-		aciklama) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		aciklama,
+        hastalik_raporu_turu,
+        valilik_izin_turu,
+        yetkili_kullanici,
+        tamamlandi_mi,
+        kardes_sayisi
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     $stmt = $db->prepare($sql);
     $stmt->execute([
         $data["ad"],
         $data["yetkili_adi"],
+        $data["yetkili_soyadi"],
+        $data["faaliyet_no"],
         $data["iletisim"],
         $data["sma_tip"],
         $data["valilik_izin_baslangic"],
@@ -57,20 +70,29 @@ if ($islem == "genelbilgiler" && $_SERVER['REQUEST_METHOD'] == "POST") {
         $data["resim_url"],
         $data["toplanacak"],
         $data["toplanan"],
+        $data["yuzde"],
         $data["birim"],
         $data["kisa_aciklama"],
-        $data["aciklama"]
+        $data["aciklama"],
+        $data["hastalik_raporu_turu"],
+        $data["valilik_izin_turu"],
+        $data["yetkili_id"],
+        $data["tamamlandi_mi"],
+        0
+
     ]);
     echo $db->lastInsertId();
 }
 
 if ($islem == "genelbilgiler" && $_SERVER['REQUEST_METHOD'] == "PUT") {
-    $sql = 'UPDATE cocuk SET ad=?,yetkili_adi=?,iletisim=?,sma_tip=?,valilik_izin_baslangic=?,valilik_izin_bitis=?,valilik_izni_url=?,hastalik_raporu_url=?,resim_url=?,toplanacak=?,toplanan=?,birim=?,kisa_aciklama=?,aciklama=? WHERE id=?';
+    $sql = 'UPDATE cocuk SET ad=?,yetkili_adi=?,yetkili_soyadi=?,faaliyet_no=?,iletisim=?,sma_tip=?,valilik_izin_baslangic=?,valilik_izin_bitis=?,valilik_izni_url=?,hastalik_raporu_url=?,resim_url=?,toplanacak=?,toplanan=?,yuzde=?,birim=?,kisa_aciklama=?,aciklama=?,hastalik_raporu_turu=?,valilik_izin_turu=?,yetkili_kullanici=?,tamamlandi_mi=? WHERE id=?';
 
     $stmt = $db->prepare($sql);
-    $stmt->execute([
+    $update = $stmt->execute([
         $data["ad"],
         $data["yetkili_adi"],
+        $data["yetkili_soyadi"],
+        $data["faaliyet_no"],
         $data["iletisim"],
         $data["sma_tip"],
         $data["valilik_izin_baslangic"],
@@ -80,11 +102,21 @@ if ($islem == "genelbilgiler" && $_SERVER['REQUEST_METHOD'] == "PUT") {
         $data["resim_url"],
         $data["toplanacak"],
         $data["toplanan"],
+        $data["yuzde"],
         $data["birim"],
         $data["kisa_aciklama"],
         $data["aciklama"],
+        $data["hastalik_raporu_turu"],
+        $data["valilik_izin_turu"],
+        $data["yetkili_id"],
+        $data["tamamlandi_mi"],
         $data["id"]
     ]);
-    echo 1;
+    if($update){
+        echo 1;
+    } else {
+        echo 0;
+    }
+    
 }
 ?>
