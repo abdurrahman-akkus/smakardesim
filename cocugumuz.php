@@ -151,7 +151,7 @@ function yuzdeRozeti($value)
                                                     </div>
                                                     <div class="row">
                                                         <!-- bootstrap card -->
-                                                        <div id="card-container" class="card">
+                                                        <div id="card-container">
                                                             <div class="row g-0">
                                                                 <div class="col-4">
                                                                     <img id="card-image" class="img-fluid" src="<?= $cocuk["resim_url"] ?>" />
