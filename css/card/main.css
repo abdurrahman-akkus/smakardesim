@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "card-font";
+  src: url("./fontTTF/Lobster-Regular.ttf") format("truetype");
+}
+#card-container {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border: 2px solid greenyellow;
+  border-radius: 20px;
+  background-color: lightskyblue;
+  margin-left: 0px;
+  padding-left: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 350px;
+}
+#card-image {
+  border-radius: 20px;
+  height: 350px;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+#card-text {
+  padding: 10px;
+}
+.qr-code{
+  display: block;
+  margin-left: auto;
+  margin-right: 0px;
+  width: 70px;
+  height: 70px;
+}
+.card-logo {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75px;
+  height: 75px;
+}
+
+.card-font {
+  font-family: card-font;
+}
+#card-msg {
+  font-family: "Times New Roman", Times, serif;
+}
+#card-from {
+  font-family: card-font;
+}
