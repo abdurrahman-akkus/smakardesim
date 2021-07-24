@@ -4,8 +4,8 @@ $id = isset($_GET["id"])?$_GET["id"]:1;
 $cocuk = $db->query("SELECT * FROM cocuk WHERE id = '{$id}'")->fetch(PDO::FETCH_ASSOC);
 $cocuklarQuery = $db->query("SELECT * FROM cocuk");
 $sliderCocuklarQuery = $db->query("SELECT * FROM cocuk AS c1 JOIN (SELECT id FROM cocuk ORDER BY RAND() LIMIT 2) as c2 ON c1.id=c2.id");
-$hedefeYaklasanlarQuery = $db->query("SELECT * FROM cocuk AS c1 JOIN (SELECT id FROM cocuk ORDER BY RAND() LIMIT 3) as c2 ON c1.id=c2.id WHERE yuzde>=90");
-$yeniBaslayanlarQuery = $db->query("SELECT * FROM cocuk AS c1 JOIN (SELECT id FROM cocuk ORDER BY RAND() LIMIT 3) as c2 ON c1.id=c2.id WHERE yuzde<=10");
+$hedefeYaklasanlarQuery = $db->query("SELECT * FROM cocuk AS c1 JOIN (SELECT id FROM cocuk WHERE yuzde>=90 AND aktif_mi=1 ORDER BY RAND() LIMIT 3) as c2 ON c1.id=c2.id");
+$yeniBaslayanlarQuery = $db->query("SELECT * FROM cocuk AS c1 JOIN (SELECT id FROM cocuk WHERE yuzde<=10 AND aktif_mi=1 ORDER BY RAND() LIMIT 3) as c2 ON c1.id=c2.id");
 $bankalar = $db->query("SELECT * FROM bankaBilgileri WHERE cocuk_id = '{$id}'");
 
 $cocuklar = array();
@@ -232,29 +232,31 @@ function yuzdeRozeti($value)
             <h1 class="u-text u-title u-text-5">HEDEFE YAKLAŞANLAR</h1>
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <div class="u-list u-list-1">
-                    <div class="u-repeater u-repeater-1">
+                    <div class="cocuklar">
                         <?php 
                             foreach ($hedefeYaklasanlar as $hCocuk) {
                         ?>
-                        <div class="cocuk">
-                            <div class="badge-container">
-                                <span class="badge rounded-pill bg-info"><?=$hCocuk["sma_tip"]?></span>
-                            </div>
-                            <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
-                                <img src="<?=$hCocuk["resim_url"]?>" class="back-img">
-                                <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <h3 class="u-text u-text-1"><?=$hCocuk["ad"]?></h3>
-                                    <p class="u-text u-text-2"><?=$hCocuk["kisa_aciklama"]?></p>
+                        <a href="/smakardesim/cocugumuz.php?id=<?=$hCocuk['id'] ?>" class="cocuk-link">
+                            <div class="cocuk">
+                                <div class="badge-container">
+                                    <span class="badge rounded-pill bg-info"><?=$hCocuk["sma_tip"]?></span>
                                 </div>
-                            </div>
-                            <div style="margin-top: -5px">
-                                <div class="a-progress orange">
-                                    <div class="a-progress-bar" val="<?=$hCocuk["yuzde"]?>" style="width: <?=$hCocuk["yuzde"]?>%; background:#f7810e;">
-                                        <div class="a-progress-value"><span><?=$hCocuk["yuzde"]?></span>%</div>
+                                <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
+                                    <img src="<?=$hCocuk["resim_url"]?>" class="back-img">
+                                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+                                        <h3 class="u-text u-text-1"><?=$hCocuk["ad"]?></h3>
+                                        <span class="cocuk-aciklama"><?=$hCocuk["kisa_aciklama"]?></span>
+                                    </div>
+                                </div>
+                                <div style="margin-top: -5px">
+                                    <div class="a-progress orange">
+                                        <div class="a-progress-bar" val="<?=$hCocuk["yuzde"]?>" style="width: <?=$hCocuk["yuzde"]?>%; background:#f7810e;">
+                                            <div class="a-progress-value"><span><?=$hCocuk["yuzde"]?></span>%</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                         <?php } ?>
                     </div>
                 </div>
@@ -264,30 +266,32 @@ function yuzdeRozeti($value)
             <h1 class="u-text u-title u-text-5">YENİ BAŞLAYANLAR</h1>
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <div class="u-list u-list-1">
-                    <div class="u-repeater u-repeater-1">
+                    <div class="cocuklar">
                         <?php 
                             foreach ($yeniBaslayanlar as $yCocuk) {
                         ?>
-                        <div class="cocuk">
-                            <div class="badge-container">
-                                <span class="badge rounded-pill bg-info"><?=$yCocuk["sma_tip"]?></span>
-                                <span class="badge rounded-pill bg-secondary" hidden=""><i class="fas fa-sync-alt"></i> 4g</span>
-                            </div>
-                            <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
-                                <img src="<?=$yCocuk["resim_url"]?>" class="back-img">
-                                <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <h3 class="u-text u-text-1"><?=$yCocuk["ad"]?></h3>
-                                    <p class="u-text u-text-2"><?=$yCocuk["kisa_aciklama"]?></p>
+                        <a href="/smakardesim/cocugumuz.php?id=<?=$yCocuk['id'] ?>" class="cocuk-link">
+                            <div class="cocuk">
+                                <div class="badge-container">
+                                    <span class="badge rounded-pill bg-info"><?=$yCocuk["sma_tip"]?></span>
+                                    <span class="badge rounded-pill bg-secondary" hidden=""><i class="fas fa-sync-alt"></i> 4g</span>
                                 </div>
-                            </div>
-                            <div style="margin-top: -5px">
-                                <div class="a-progress orange">
-                                    <div class="a-progress-bar" val="<?=$yCocuk["yuzde"]?>" style="width: <?=$yCocuk["yuzde"]?>%; background:#f7810e;">
-                                        <div class="a-progress-value"><span><?=$yCocuk["yuzde"]?></span>%</div>
+                                <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
+                                    <img src="<?=$yCocuk["resim_url"]?>" class="back-img">
+                                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+                                        <h3 class="u-text u-text-1"><?=$yCocuk["ad"]?></h3>
+                                        <p class="cocuk-aciklama"><?=$yCocuk["kisa_aciklama"]?></p>
+                                    </div>
+                                </div>
+                                <div style="margin-top: -5px">
+                                    <div class="a-progress orange">
+                                        <div class="a-progress-bar" val="<?=$yCocuk["yuzde"]?>" style="width: <?=$yCocuk["yuzde"]?>%; background:#f7810e;">
+                                            <div class="a-progress-value"><span><?=$yCocuk["yuzde"]?></span>%</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                         <?php } ?>
                     </div>
                 </div>
@@ -297,6 +301,11 @@ function yuzdeRozeti($value)
             <div class="u-clearfix u-sheet u-sheet-1"></div>
         </footer>
     </main>
+    <style>
+        .cocuk-link {
+            text-decoration: none;
+        }
+    </style>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script type="text/javascript">
     function isElementInView(element, fullyInView) {

@@ -78,7 +78,7 @@ $cocukSayisi = sizeof($cocuklar);
             <!-- /.row -->
             <div class="row">
                 
-            <?php if($yetki>1)  
+            <?php if($yetki>0)  
                         { ?>
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">
@@ -103,8 +103,9 @@ $cocukSayisi = sizeof($cocuklar);
                     </div>
                 </div>
                 <?php }
-                        if($yetki>2)
-                        { ?>
+                
+                if($yetki>1)
+                    { ?>
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-info ">
                         <div class="panel-heading">
@@ -125,9 +126,31 @@ $cocukSayisi = sizeof($cocuklar);
                                 <div class="clearfix"></div>
                             </div>
                         </a>
-                    <?php  } ?>
                     </div>
                 </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-info ">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-user fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?= $kllnc_sayi ?></div>
+                                    <div>Kullanıcılar</div>
+                                </div>
+                            </div>
+                        </div>                    
+                        <a href="kllnclar.php">
+                            <div class="panel-footer">
+                                <span class="pull-left">Detaylar</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <?php  } ?>
             </div>
             
         </div>
