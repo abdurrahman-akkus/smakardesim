@@ -22,3 +22,22 @@ main {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+.message-return {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    padding: 20px 0px 20px 0px;
+    border: none;
+}
+
+.message-return-success {
+    background: #0C8383;
+}
+
+.message-return-error {
+    background: #FF1010;
+}
