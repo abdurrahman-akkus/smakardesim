@@ -33,7 +33,7 @@
     <meta property="og:url" content="index.php">
 </head>
 
-<body class="u-body text-light">
+<body class="u-body text-light" onload="temizle()">
     <main>
         <header class="u-clearfix u-header u-header" id="sec-2c14">
             <div class="u-clearfix u-sheet u-sheet-1">
@@ -94,27 +94,22 @@
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <h1 class="u-text u-text-1">Bize Ulaşın</h1>
                 <div class="u-form u-form-1">
-                    <form action="#" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+                    <form  method="post" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form validate-form" style="padding: 10px" source="custom" name="form" id="iletisim_form">
                         <div class="u-form-group u-form-name">
-                            <label for="name-3b9a" class="u-form-control-hidden u-label">Name</label>
-                            <input type="text" placeholder="Adınız" id="name-3b9a" name="name" class="u-border-2 u-border-black border-light u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-1" required="">
+                            <input type="text" placeholder="Adınız" id="name-3b9a" name="name" class="u-border-2 u-border-black border-light u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-1 validate-input" required="" data-validate="İsim Bilgisi Boş Geçilemez.">
                         </div>
                         <div class="u-form-email u-form-group">
-                            <label for="email-3b9a" class="u-form-control-hidden u-label">Email</label>
-                            <input type="email" placeholder="E-Posta" id="email-3b9a" name="email" class="u-border-2 u-border-black border-light u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-2" required="">
+                            <input type="email" placeholder="E-Posta" id="email-3b9a" name="email" class="u-border-2 u-border-black border-light u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-2 validate-input" required="" data-validate="Mail Bilgisi Boş Geçilemez.">
                         </div>
                         <div class="u-form-group u-form-message">
-                            <label for="message-3b9a" class="u-form-control-hidden u-label">Message</label>
-                            <textarea placeholder="MEsajınız" rows="4" cols="50" id="message-3b9a" name="message" class="u-border-2 u-border-black border-light u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-3" required=""></textarea>
+                            <textarea placeholder="Mesajınız" rows="4" cols="50" id="message-3b9a" name="message" class="u-border-2 u-border-black border-light u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-3 validate-input" required="" data-validate="Mesaj Bilgisi Boş Geçilemez."></textarea>
                         </div>
                         <div class="u-align-center u-form-group u-form-submit">
                             <a href="#" class="u-border-2 u-btn u-btn-rectangle u-btn-submit u-button-style u-none u-btn-1 border-light">gönder</a>
                             <input type="submit" value="submit" class="u-form-control-hidden">
                         </div>
-                        <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                        <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-                        <input type="hidden" value="" name="recaptchaResponse">
                     </form>
+                    <div id="message_return" class="message-return d-none"></div>
                 </div>
             </div>
         </section>
@@ -122,6 +117,9 @@
             <div class="u-clearfix u-sheet u-sheet-1"></div>
         </footer>
     </main>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/tilt.jquery.min.js"></script>
+    <script src="js/iletisim.js"></script>
 </body>
 
 </html>
