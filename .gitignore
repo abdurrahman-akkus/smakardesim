@@ -1,2 +1,4 @@
 /dosyalar/
 /.idea/
+/util/connect.php
+/util/mail.php
