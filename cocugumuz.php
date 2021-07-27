@@ -134,7 +134,7 @@ function yuzdeRozeti($value)
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-dialog modal-xl">
+                                <div class="modal-dialog ">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Bana Kardeş Olduğun İçin Teşekkür Ederim</h5>
@@ -149,27 +149,16 @@ function yuzdeRozeti($value)
                                                             <input type="text" id="card-form-title" class="form-control" name="card-form-title" />
                                                         </form>
                                                     </div>
-                                                    <div class="row">
-                                                        <!-- bootstrap card -->
-                                                        <div id="card-container">
-                                                            <div class="row g-0">
-                                                                <div class="col-4">
-                                                                    <img id="card-image" class="img-fluid" src="<?= $cocuk["resim_url"] ?>" />
-                                                                </div>
-                                                                <div class="col-8">
-                                                                    <div class="card-body">
-                                                                        <img src="./images/smaKardesimLogo.svg" class="card-logo">
-                                                                        <p id="card-msg">
-                                                                            Ben <span id="card-title" class="card-font text-center">*********</span> olarak
-                                                                            <span class="card-font"><?= $cocuk["ad"] ?></span> isimli çocuğumuzu SMA KARDEŞİM
-                                                                            olarak seçtim ve destek vererek kardeş oldum. Sizde destek verip kardeş olmak istiyorsanız. <a href="smakardesim.com">smakardesim.com</a>'a giderek
-                                                                            çocuklarımıza destek vererek kardeş olabilirsiniz.
-                                                                        </p>
-                                                                        <img src="./images/qrCodesmakardesim.png" class="qr-code">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <div id="card-container" class="mt-5">
+                                                        <img id="card-image" class="img-fluid" src="<?= $cocuk["resim_url"] ?>" />
+                                                        <img src="./images/smaKardesimLogo.svg" class="card-logo">
+                                                        <p id="card-msg">
+                                                            Ben <span id="card-title" class="card-font text-center">*********</span> olarak
+                                                            <span class="card-font"><?= $cocuk["ad"] ?></span> isimli çocuğumuzu SMA KARDEŞİM
+                                                            olarak seçtim ve destek vererek kardeş oldum. Sizde destek verip kardeş olmak istiyorsanız. <a href="smakardesim.com">smakardesim.com</a>'a giderek
+                                                            çocuklarımıza destek vererek kardeş olabilirsiniz.
+                                                        </p>
+                                                        <img src="./images/qrCodesmakardesim.png" class="qr-code">
                                                     </div>
                                                 </div>
                                             </div>
@@ -200,11 +189,11 @@ function yuzdeRozeti($value)
                         <table class="table table-striped text-light">
                             <tr>
                                 <td>Yetkili Adı</td>
-                                <td><span id="yetkili_adi"><?=$cocuk["yetkili_adi"]?></span> <span id="yetkili_soyadi"><?=$cocuk["yetkili_soyadi"]?></span></td>
+                                <td><span id="yetkili_adi"><?= $cocuk["yetkili_adi"] ?></span> <span id="yetkili_soyadi"><?= $cocuk["yetkili_soyadi"] ?></span></td>
                             </tr>
                             <tr>
                                 <td>Faaliyet No</td>
-                                <td><span id="faaliyet_no"><?=$cocuk["faaliyet_no"]?></span> <button class="btn btn-info" onclick="valilikİzinKontrol()"  data-toggle="modal" data-target="#valilik_izni_modal">SORGULA</button></td>
+                                <td><span id="faaliyet_no"><?= $cocuk["faaliyet_no"] ?></span> <button class="btn btn-info" onclick="valilikİzinKontrol()" data-toggle="modal" data-target="#valilik_izni_modal">SORGULA</button></td>
                             <tr>
                                 <td>İletişim</td>
                                 <td><?= $cocuk["iletisim"] ?></td>
@@ -284,27 +273,29 @@ function yuzdeRozeti($value)
                     <?php } ?>
 
                     <h3 class="mt-4">Detaylı Bilgi</h3>
-                    <article id="expalaination"><?=$cocuk["aciklama"]?></article>                    
+                    <article id="expalaination"><?= $cocuk["aciklama"] ?></article>
                     <?php if (!empty($cocuk["hastalik_raporu_url"])) {  ?>
-                        <a href="<?=$cocuk["hastalik_raporu_url"] ?>" class="mt-4">Hastalık Raporu <i class="fas fa-download"></i></a><!-- TODO: Telefonda indirmek istiyor -->
-                    <?php if ($cocuk["hastalik_raporu_turu"]=="pdf") { ?>
-                        <div style="height: 500px;margin-bottom: 50px;">
-                            <iframe id="hastalik_raporu" src="<?= $cocuk["hastalik_raporu_url"] ?>" width="100%" height="500px"></iframe>
-                        </div>
-                    <?php } else { ?>
-                        <img src="<?=$cocuk["hastalik_raporu_url"] ?>" alt="<?=$cocuk["ad"] ?> Hastalık Raporu">
-                    <?php }} ?>
-                    
+                        <a href="<?= $cocuk["hastalik_raporu_url"] ?>" class="mt-4">Hastalık Raporu <i class="fas fa-download"></i></a><!-- TODO: Telefonda indirmek istiyor -->
+                        <?php if ($cocuk["hastalik_raporu_turu"] == "pdf") { ?>
+                            <div style="height: 500px;margin-bottom: 50px;">
+                                <iframe id="hastalik_raporu" src="<?= $cocuk["hastalik_raporu_url"] ?>" width="100%" height="500px"></iframe>
+                            </div>
+                        <?php } else { ?>
+                            <img src="<?= $cocuk["hastalik_raporu_url"] ?>" alt="<?= $cocuk["ad"] ?> Hastalık Raporu">
+                    <?php }
+                    } ?>
+
                     <?php if (!empty($cocuk["valilik_izni_url"])) { ?>
-                        <a href="<?=$cocuk["valilik_izni_url"] ?>" class="mt-4">Valilik İzin Belgesi <i class="fas fa-download"></i></a>
-                    <?php if ($cocuk["valilik_izin_turu"]=="pdf") {
-                        ?>          
-                        <div style="height: 500px;margin-bottom: 50px;">
-                            <iframe id="valilik_izni" src="<?= $cocuk["valilik_izni_url"] ?>" width="100%" height="500px"></iframe>
-                        </div>
-                    <?php } else { ?>   
-                        <img src="<?=$cocuk["valilik_izni_url"] ?>" alt="<?=$cocuk["ad"] ?> Valilik İzni">
-                    <?php }} ?>             
+                        <a href="<?= $cocuk["valilik_izni_url"] ?>" class="mt-4">Valilik İzin Belgesi <i class="fas fa-download"></i></a>
+                        <?php if ($cocuk["valilik_izin_turu"] == "pdf") {
+                        ?>
+                            <div style="height: 500px;margin-bottom: 50px;">
+                                <iframe id="valilik_izni" src="<?= $cocuk["valilik_izni_url"] ?>" width="100%" height="500px"></iframe>
+                            </div>
+                        <?php } else { ?>
+                            <img src="<?= $cocuk["valilik_izni_url"] ?>" alt="<?= $cocuk["ad"] ?> Valilik İzni">
+                    <?php }
+                    } ?>
                 </div>
             </div>
         </section>
@@ -313,40 +304,40 @@ function yuzdeRozeti($value)
         </footer>
 
 
-      
+
     </main>
 
-<!-- Modal -->
-<div class="modal fade show" id="valilik_izni_modal" tabindex="-1" role="dialog" aria-labelledby="valilikIzniLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Valilik İzin Detayı</h4>
-      </div>
-      <div class="modal-body scrollable">
-        <table class="table table-striped" id="valilik_sorgu_tablosu">
-            <thead>
-                <tr>
-                    <th>Adı Soyadı</th>
-                    <th>Faaliyet Kapsamı (İl-İlçe)</th>
-                    <th>İzin Veren Makam</th>
-                    <th>Yardım Toplama Amacı</th>
-                    <th>Yardım Toplama Türü</th>
-                    <th>Yardım Toplama Şekli</th>
-                    <th>Yardım Toplama Başlangıç Tarihi</th>
-                    <th>Yardım Toplama Bitiş Tarihi</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+    <!-- Modal -->
+    <div class="modal fade show" id="valilik_izni_modal" tabindex="-1" role="dialog" aria-labelledby="valilikIzniLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Valilik İzin Detayı</h4>
+                </div>
+                <div class="modal-body scrollable">
+                    <table class="table table-striped" id="valilik_sorgu_tablosu">
+                        <thead>
+                            <tr>
+                                <th>Adı Soyadı</th>
+                                <th>Faaliyet Kapsamı (İl-İlçe)</th>
+                                <th>İzin Veren Makam</th>
+                                <th>Yardım Toplama Amacı</th>
+                                <th>Yardım Toplama Türü</th>
+                                <th>Yardım Toplama Şekli</th>
+                                <th>Yardım Toplama Başlangıç Tarihi</th>
+                                <th>Yardım Toplama Bitiş Tarihi</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
     <div id="fb-root"></div>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.v3.3.7.min.js"></script>
@@ -401,96 +392,103 @@ function yuzdeRozeti($value)
 
         }
 
-    function valilikİzinKontrol() {
-        
-        fetch('yonetim/valilik-izni-api.php', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                islem: "izin_kontrol",
-                dataList: JSON.stringify({
-                    "FaliyetNo":$('#faaliyet_no').text(),
-                    "Ad":$('#yetkili_adi').text(),
-                    "Soyad":$('#yetkili_soyadi').text()
+        function valilikİzinKontrol() {
+
+            fetch('yonetim/valilik-izni-api.php', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        islem: "izin_kontrol",
+                        dataList: JSON.stringify({
+                            "FaliyetNo": $('#faaliyet_no').text(),
+                            "Ad": $('#yetkili_adi').text(),
+                            "Soyad": $('#yetkili_soyadi').text()
+                        })
+                    })
                 })
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            $('#valilik_sorgu_tablosu tbody').html("");
-            for(datum of data.Data) {
-               $('#valilik_sorgu_tablosu tbody').append(
-                "<tr>"
-                +"<td>"+ datum.YardimToplayanAd+"</td>"
-                +"<td>"+ datum.FaaliyetKapsamiStr+"</td>"
-                +"<td>"+ datum.IzinVerenMakamIlIlce+"</td>"
-                +"<td>"+ datum.FaaliyetAmaciStr+"</td>"
-                +"<td>"+ datum.YardimToplamaTuruStr+"</td>"
-                +"<td>"+ datum.YardimToplamaSekliStr+"</td>"
-                +"<td>"+ tarihFormatla(parseInt(datum.DtBaslangic.substring(6,19)))+"</td>"
-                +"<td>"+ tarihFormatla(parseInt(datum.DtBitis.substring(6,19)))+"</td>"
-                +"</tr>"
-               );
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    $('#valilik_sorgu_tablosu tbody').html("");
+                    for (datum of data.Data) {
+                        $('#valilik_sorgu_tablosu tbody').append(
+                            "<tr>" +
+                            "<td>" + datum.YardimToplayanAd + "</td>" +
+                            "<td>" + datum.FaaliyetKapsamiStr + "</td>" +
+                            "<td>" + datum.IzinVerenMakamIlIlce + "</td>" +
+                            "<td>" + datum.FaaliyetAmaciStr + "</td>" +
+                            "<td>" + datum.YardimToplamaTuruStr + "</td>" +
+                            "<td>" + datum.YardimToplamaSekliStr + "</td>" +
+                            "<td>" + tarihFormatla(parseInt(datum.DtBaslangic.substring(6, 19))) + "</td>" +
+                            "<td>" + tarihFormatla(parseInt(datum.DtBitis.substring(6, 19))) + "</td>" +
+                            "</tr>"
+                        );
 
-               console.log(datum.DtBaslangic.substring(6,19));
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    }
+                        console.log(datum.DtBaslangic.substring(6, 19));
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
 
-    function tarihFormatla(tarih) {
-        tarih = new Date(tarih);
-        return sifirEkleme(tarih.getDate())+
-          "/"+(sifirEkleme(tarih.getMonth()+1))+
-          "/"+tarih.getFullYear()+
-          " "+sifirEkleme(tarih.getHours())+
-          ":"+sifirEkleme(tarih.getMinutes())+
-          ":"+sifirEkleme(tarih.getSeconds());
-    }
+        function tarihFormatla(tarih) {
+            tarih = new Date(tarih);
+            return sifirEkleme(tarih.getDate()) +
+                "/" + (sifirEkleme(tarih.getMonth() + 1)) +
+                "/" + tarih.getFullYear() +
+                " " + sifirEkleme(tarih.getHours()) +
+                ":" + sifirEkleme(tarih.getMinutes()) +
+                ":" + sifirEkleme(tarih.getSeconds());
+        }
 
-    function sifirEkleme(n) {
-        return n > 9 ? "" + n : "0" + n;
-    }
-      
+        function sifirEkleme(n) {
+            return n > 9 ? "" + n : "0" + n;
+        }
     </script>
     <!-- Sma KArdeişm ol button fonksiyonu -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script> -->
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="./js/cardModalJs.js"></script>
 
     <style>
-    #facebook_share_btn {
-        background: #2d4485;
-    }
-    #twitter_share_btn {
-        background:#1da1f2;
-    }
-    .share-btn {
-        border: none;
-        border-radius: 3px;
-        color: white;
-    }
-    #expalaination {
-        text-align: justify;
-    }
-    .iban-container {
-        cursor: pointer;
-    }
-    a, .belge-link {
-        color: #6e0dbf;
-        text-decoration: none;
-        font-style: italic;
-    }
-    .scrollable {
-        overflow: scroll;
-    }
+        #facebook_share_btn {
+            background: #2d4485;
+        }
+
+        #twitter_share_btn {
+            background: #1da1f2;
+        }
+
+        .share-btn {
+            border: none;
+            border-radius: 3px;
+            color: white;
+        }
+
+        #expalaination {
+            text-align: justify;
+        }
+
+        .iban-container {
+            cursor: pointer;
+        }
+
+        a,
+        .belge-link {
+            color: #6e0dbf;
+            text-decoration: none;
+            font-style: italic;
+        }
+
+        .scrollable {
+            overflow: scroll;
+        }
     </style>
 </body>
 
