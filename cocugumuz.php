@@ -56,6 +56,9 @@ function yuzdeRozeti($value)
             "logo": "images/default-logo.png"
         }
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
+
     <meta property="og:title" content="Çocuklarımız">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#478ac9">
@@ -134,38 +137,36 @@ function yuzdeRozeti($value)
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog ">
+                                <div class="modal-dialog container-fluid">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Bana Kardeş Olduğun İçin Teşekkür Ederim</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="row">
-                                                        <form>
-                                                            <label for="card-form-title"><b>İsim Soyisim:</b></label>
-                                                            <input type="text" id="card-form-title" class="form-control" name="card-form-title" />
-                                                        </form>
-                                                    </div>
-                                                    <div id="card-container" class="mt-5">
-                                                        <img id="card-image" class="img-fluid" src="<?= $cocuk["resim_url"] ?>" />
-                                                        <img src="./images/smaKardesimLogo.svg" class="card-logo">
-                                                        <p id="card-msg">
-                                                            Ben <span id="card-title" class="card-font text-center">*********</span> olarak
-                                                            <span class="card-font"><?= $cocuk["ad"] ?></span> isimli çocuğumuzu SMA KARDEŞİM
-                                                            olarak seçtim ve destek vererek kardeş oldum. Sizde destek verip kardeş olmak istiyorsanız. <a href="smakardesim.com">smakardesim.com</a>'a giderek
-                                                            çocuklarımıza destek vererek kardeş olabilirsiniz.
-                                                        </p>
-                                                        <img src="./images/qrCodesmakardesim.png" class="qr-code">
-                                                    </div>
+                                            <div>
+                                                <form>
+                                                    <label for="card-form-title"><b>İsim Soyisim:</b></label>
+                                                    <input type="text" id="card-form-title" class="form-control" name="card-form-title" />
+                                                </form>
+                                            </div>
+                                            <div id="card-container" class="row mt-5">
+                                                <div class="">
+                                                    <img id="card-image" class="img-fluid" src="<?= $cocuk["resim_url"] ?>" />
+                                                    <img src="./images/smaKardesimLogo.svg" id="card-logo">
+                                                    <p id="card-msg">
+                                                        Ben <span id="card-title" class="card-font text-center">*********</span> olarak
+                                                        <span class="card-font"><?= $cocuk["ad"] ?></span> isimli çocuğumuzu SMA KARDEŞİM
+                                                        olarak seçtim ve destek vererek kardeş oldum. Sizde destek verip kardeş olmak istiyorsanız. <a class="card-font" href="smakardesim.com">smakardesim.com</a>'a giderek
+                                                        çocuklarımıza destek vererek kardeş olabilirsiniz.
+                                                    </p>
+                                                    <img src="./images/qrCodesmakardesim.png" id="qr-code">
                                                 </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button id="save-button-card" type="button" class="btn btn-primary">Belgeyi İndir</button>
-                                                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button> -->
-                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="save-button-card" type="button" class="btn btn-primary" onclick="downloadDiv()">Belgeyi İndir</button>
+                                            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button> -->
                                         </div>
                                     </div>
                                 </div>
@@ -449,7 +450,7 @@ function yuzdeRozeti($value)
         }
     </script>
     <!-- Sma KArdeişm ol button fonksiyonu -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
     <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
