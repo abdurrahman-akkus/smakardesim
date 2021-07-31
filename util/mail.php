@@ -26,8 +26,8 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['message']))
         $mail->SMTPSecure = 'ssl';
         $mail->Host = 'mail.smakardesim.com';
         $mail->Port = 465;
-        $mail->Username = [KULLANICI EPOSTA];
-        $mail->Password = [ŞİFRE];
+        $mail->Username = [GİRİNİZ];
+        $mail->Password = [GİRİNİZ];
         $mail->setFrom($mail->Username, 'SMA Kardeşim');
         $mail->AddAddress('iletisim@smakardesim.com', 'SMA Kardeşim');
         $mail->AddAddress('ahmedakkus.42@gmail.com', 'Ahmet AKKUŞ');
