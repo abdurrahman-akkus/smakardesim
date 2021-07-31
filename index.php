@@ -235,7 +235,7 @@ function yuzdeRozeti($value)
                                     <img src="<?=$yCocuk["resim_url"]?>" class="back-img">
                                     <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
                                         <h3 class="u-text u-text-1"><?=$yCocuk["ad"]?></h3>
-                                        <p class="cocuk-aciklama"><?=$yCocuk["kisa_aciklama"]?></p>
+                                        <span class="cocuk-aciklama"><?=$yCocuk["kisa_aciklama"]?></span>
                                     </div>
                                 </div>
                                 <div style="margin-top: -5px">
