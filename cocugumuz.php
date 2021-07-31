@@ -32,7 +32,7 @@ function yuzdeRozeti($value)
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <link rel="icon" type="image/png" href="images/smaKardesimLogo.svg"/>
+    <link rel="icon" type="image/png" href="images/smaKardesimLogo.svg" />
     <title>İsim Soyisim</title>
     <link rel="stylesheet" href="css/nicepage.css" media="screen">
     <link rel="stylesheet" href="css/cocuklarimiz.css" media="screen">
@@ -97,18 +97,16 @@ function yuzdeRozeti($value)
                                                     <input type="text" id="card-form-title" class="form-control" name="card-form-title" />
                                                 </form>
                                             </div>
-                                            <div id="card-container" class="row mt-5">
-                                                <div class="">
-                                                    <img id="card-image" class="img-fluid" src="<?= $cocuk["resim_url"] ?>" />
-                                                    <img src="./images/smaKardesimLogo.svg" id="card-logo">
-                                                    <p id="card-msg">
-                                                        Ben <span id="card-title" class="card-font text-center">*********</span> olarak
-                                                        <span class="card-font"><?= $cocuk["ad"] ?></span> isimli çocuğumuzu SMA KARDEŞİM
-                                                        olarak seçtim ve destek vererek kardeş oldum. Sizde destek verip kardeş olmak istiyorsanız. <a class="card-font" href="smakardesim.com">smakardesim.com</a>'a giderek
-                                                        çocuklarımıza destek vererek kardeş olabilirsiniz.
-                                                    </p>
-                                                    <img src="./images/qrCodesmakardesim.png" id="qr-code">
-                                                </div>
+                                            <div id="card-container" class="border-img row mt-5">
+                                                <img id="card-image" class="img-fluid" src="<?= $cocuk["resim_url"] ?>" />
+                                                <img src="./images/smaKardesimLogo.svg" id="card-logo">
+                                                <p id="card-msg">
+                                                    Ben <span id="card-title" class="card-font text-center">*********</span> olarak
+                                                    <span class="card-font"><?= $cocuk["ad"] ?></span> isimli çocuğumuzu SMA KARDEŞİM
+                                                    olarak seçtim ve destek vererek kardeş oldum. Sizde destek verip kardeş olmak istiyorsanız. <a class="card-font" href="smakardesim.com">smakardesim.com</a>'a giderek
+                                                    çocuklarımıza destek vererek kardeş olabilirsiniz.
+                                                </p>
+                                                <img src="./images/qrCodesmakardesim.png" id="qr-code">
                                             </div>
                                         </div>
                                         <div class="modal-footer">

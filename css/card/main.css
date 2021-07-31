@@ -3,8 +3,8 @@
   src: url("./fontTTF/Lobster-Regular.ttf") format("truetype");
 }
 #card-container {
-  border: 5px solid black;
-  background-color: lightskyblue;
+  background-image: url("../../images/background.png");
+  /* background-color: lightskyblue; */
   padding: 20px;
 }
 #card-image {
@@ -49,6 +49,6 @@
   font-size: 15px;
   text-align: center;
 }
-#card-from {
+.card-from {
   font-family: card-font;
 }
