@@ -1,8 +1,9 @@
 <?php
+
 $host="localhost";
-$veritabani = [VERİTABANI];
-$kullanici = [KULLANICI];
-$sifre = [ŞİFRE];
+$veritabani = "smakardesim";
+$kullanici = "root";
+$sifre = "27648Onur";
 
 try{
 	$db = new PDO("mysql:host=$host;dbname=$veritabani;charset=utf8",$kullanici,$sifre);
